@@ -5,6 +5,7 @@ install: true
 
 script:
 - mvn -f ciphers/pom.xml clean verify coveralls:report
+- mvn -f ciphers/pom.xml clean verify sonar:sonar
 
 sudo: false
 
