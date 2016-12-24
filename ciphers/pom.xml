@@ -14,6 +14,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jacoco.data.file>${project.build.directory}/coverage-reports/jacoco.exec</jacoco.data.file>
 		<jacoco.report.path>${project.reporting.outputDirectory}/jacoco-ut</jacoco.report.path>
+		<sonar.language>java</sonar.language>
+		<sonar.jacoco.reportPath>${jacoco.data.file}</sonar.jacoco.reportPath>
 	</properties>
 
 	<build>
