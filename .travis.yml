@@ -4,5 +4,5 @@ language: java
 install: true
 
 script:
-- mvn -f com.examples.myproject/pom.xml clean verify
+- mvn -f it.buracchi.ciphers/pom.xml clean verify
 
