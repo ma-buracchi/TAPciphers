@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/github/ma-buracchi/TAPciphers/badge.svg?branch=master)](https://coveralls.io/github/ma-buracchi/TAPciphers?branch=master)
 #TAPciphers
 progetto per l'esame di Tecniche Avanzate di Programmazione
 
