@@ -40,5 +40,30 @@ public class ShiftTest {
 	public void testShiftCodingNegativePosition() {
 		assertEquals("sdrs", shift.code(test, -1));
 	}
+	
+	@Test
+	public void testShiftDecodingZeroPosition() {
+		assertEquals(test, shift.decode("test", 0));
+	}
+	
+	@Test
+	public void testShiftDecodingOnePosition() {
+		assertEquals(test, shift.decode("uftu", 1));
+	}
+	
+	@Test
+	public void testShiftDecodingTwentySixPosition() {
+		assertEquals(test, shift.decode("test", 26));
+	}
+	
+	@Test
+	public void testShiftDecodingTwentySevenPosition() {
+		assertEquals(test, shift.decode("uftu", 27));
+	}
+	
+	@Test
+	public void testShiftDecodingNegativePosition() {
+		assertEquals(test, shift.decode("sdrs", -1));
+	}
 
 }
