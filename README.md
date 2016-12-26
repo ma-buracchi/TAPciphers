@@ -10,4 +10,4 @@ Implemented ciphers:
  - Shift cipher
  
  Working on:
-  - Substitution cipher
+ - Substitution cipher
