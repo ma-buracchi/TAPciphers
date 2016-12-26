@@ -28,5 +28,35 @@ public class SubstitutionTest {
 		test = "a strange string with spaces,UPPERCASE, spaces and sp3c1al characters!!";
 		assertEquals("qlzkqfutlzkofuvozilhqetlxhhtkeqltlhqetlqfrlheqseiqkqeztkl", sub.code(test));
 	}
+	
+	@Test
+	public void testDecoding() {
+		test = "ztlz";
+		assertEquals("test", sub.decode(test));
+	}
+
+	@Test
+	public void testDecodingStrangeString() {
+		test = "qlzkqfutlzkofuvozilhqetlxhhtkeqltlhqetlqfrlheqseiqkqeztkl";
+		assertEquals("astrangestringwithspacesuppercasespacesandspcalcharacters", sub.decode(test));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testNewAlphabetShorterThenTwentisixLetters() {
+		newAlphabet = "qwertyuiopasdfghj";
+		sub = new Substitution(newAlphabet);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testNewAlphabetLongerThenTwentisixLetters() {
+		newAlphabet = "qwertyuiopasdfghjklzxcvbnmqwerty";
+		sub = new Substitution(newAlphabet);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testNewAlphabetWithIllegalCharacter() {
+		newAlphabet = "qwertyuiopa?dfghjklzxcvbnm";
+		sub = new Substitution(newAlphabet);
+	}
 
 }
