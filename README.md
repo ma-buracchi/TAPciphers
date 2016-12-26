@@ -2,9 +2,12 @@
 [![Coverage Status](https://coveralls.io/repos/github/ma-buracchi/TAPciphers/badge.svg?branch=master)](https://coveralls.io/github/ma-buracchi/TAPciphers?branch=master)
 [![Build Status](https://travis-ci.org/ma-buracchi/TAPciphers.svg?branch=master)](https://travis-ci.org/ma-buracchi/TAPciphers)
 
-progetto per l'esame di Tecniche Avanzate di Programmazione
+"Tecniche avanzate di Programmazione" project
 
-Sviluppo del progetto "ciphers" con la metodologia test driven e con l'utilizzo dei plugin visti durante il corso.
+"ciphers" project using test-driven developing and all the plugins viewed during the lectures.
 
-Cifrari al momento implementati:
+Implemented ciphers:
  - Shift cipher
+ 
+ Working on:
+ - Substitution cipher
