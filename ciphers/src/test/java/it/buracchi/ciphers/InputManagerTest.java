@@ -39,5 +39,29 @@ public class InputManagerTest {
 		test = "tEsT";
 		assertEquals("test", im.process(test));
 	}
+	
+	@Test
+	public void testCheckAlphabet() {
+		test = "qwertyuiopasdfghjklzxcvbnm";
+		assertEquals(test, im.checkAlphabet(test));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCheckAlphabetLongerThenTwentysixCharacters() {
+		test = "qwertyuiopasdfghjklzxcvbnmq";
+		im.checkAlphabet(test);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCheckAlphabetShorterThenTwentysixCharacters() {
+		test = "qwertyuiopasdfghjklzxcvbn";
+		im.checkAlphabet(test);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCheckAlphabetWithIllegalCharacters() {
+		test = "qwertyuiopa!dfghjklzxcvbn";
+		im.checkAlphabet(test);
+	}
 
 }
