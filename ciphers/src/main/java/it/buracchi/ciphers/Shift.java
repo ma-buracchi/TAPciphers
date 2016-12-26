@@ -2,7 +2,6 @@ package it.buracchi.ciphers;
 
 public class Shift {
 
-	private InputManager im;
 	private String message;
 
 	public String code(String msg, int shiftPosition) {
@@ -24,7 +23,7 @@ public class Shift {
 	}
 	
 	private void processMessage(String msg) {
-		im = new InputManager();
+		InputManager im = new InputManager();
 		message = im.process(msg);
 	}
 
