@@ -15,6 +15,13 @@ public class InputManagerTest {
 		im = new InputManager();
 		test = "";
 	}
+	
+	@Test
+	public void testStringOk() {
+		test = "test";
+		im.process(test);
+		assertEquals("test",test);
+	}
 
 	@Test(expected=IllegalArgumentException.class)
 	public void testIllegalFirstCharacterInput() {
