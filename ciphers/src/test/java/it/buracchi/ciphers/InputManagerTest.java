@@ -59,8 +59,14 @@ public class InputManagerTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testCheckAlphabetWithIllegalCharacters() {
-		test = "qwertyuiopa!dfghjklzxcvbn";
+	public void testCheckAlphabetWithIllegalCharacterLowerThenASCII65() {
+		test = "qwertyuiopa!dfghjklzxcvbnm";
+		im.checkAlphabet(test);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCheckAlphabetWithIllegalCharacterHigherThenASCII122() {
+		test = "qwertyuiopa}dfghjklzxcvbnm";
 		im.checkAlphabet(test);
 	}
 

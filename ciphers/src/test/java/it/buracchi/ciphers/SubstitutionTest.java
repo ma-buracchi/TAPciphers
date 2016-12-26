@@ -58,5 +58,5 @@ public class SubstitutionTest {
 		newAlphabet = "qwertyuiopa?dfghjklzxcvbnm";
 		sub = new Substitution(newAlphabet);
 	}
-
+	
 }
