@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class InputManagerTest {
-	
+
 	private InputManager im;
 	private String test;
 
@@ -15,30 +15,29 @@ public class InputManagerTest {
 		im = new InputManager();
 		test = "";
 	}
-	
+
 	@Test
 	public void testStringOk() {
 		test = "test";
-		im.process(test);
-		assertEquals("test",test);
+		assertEquals("test", im.process(test));
 	}
 
-	@Test(expected=IllegalArgumentException.class)
-	public void testIllegalFirstCharacterInput() {
-		test = ":test";
-		im.process(test);
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testIllegalLastCharacterInput() {
-		test = "test:";
-		im.process(test);
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testIllegalMiddleCharacterInput() {
+	@Test
+	public void testIllegalCharacterInput() {
 		test = "te:st";
-		im.process(test);
+		assertEquals("test", im.process(test));
+	}
+
+	@Test
+	public void testInputWithSpaces() {
+		test = "te st ";
+		assertEquals("test", im.process(test));
+	}
+
+	@Test
+	public void testInputWithUppercase() {
+		test = "tEsT";
+		assertEquals("test", im.process(test));
 	}
 
 }
