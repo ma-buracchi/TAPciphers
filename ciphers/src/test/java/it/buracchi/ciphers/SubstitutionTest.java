@@ -42,13 +42,13 @@ public class SubstitutionTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testNewAlphabetShorterThenTwentisixLetters() {
+	public void testNewAlphabetShorterThenTwentySixLetters() {
 		newAlphabet = "qwertyuiopasdfghj";
 		sub = new Substitution(newAlphabet);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testNewAlphabetLongerThenTwentisixLetters() {
+	public void testNewAlphabetLongerThenTwentySixLetters() {
 		newAlphabet = "qwertyuiopasdfghjklzxcvbnmqwerty";
 		sub = new Substitution(newAlphabet);
 	}
