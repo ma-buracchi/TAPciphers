@@ -9,14 +9,22 @@ public class VigenereTest {
 
 	Vigenere vigenere;
 
-	@Before
-	public void setUp() {
-		vigenere = new Vigenere("test","testmessage");
-	}
-
 	@Test
 	public void testKeyExtension() {
+		vigenere = new Vigenere("test","testmessage");
 		assertEquals("testtesttest", vigenere.getKey());
+	}
+	
+	@Test
+	public void testCoding() {
+		vigenere = new Vigenere("test","testmessage");
+		assertEquals("mikmfikltkw", vigenere.code());
+	}
+	
+	@Test
+	public void testDecoding() {
+		vigenere = new Vigenere("test","mikmfikltkw");
+		assertEquals("testmessage", vigenere.decode());
 	}
 
 }
