@@ -13,6 +13,14 @@ public class Vigenere {
 		this.key = extendKey(key, msg.length());
 		result = new StringBuilder();
 	}
+	
+	private String extendKey(String key, int l) {
+		StringBuilder k = new StringBuilder();
+		while (k.length() <= l) {
+			k.append(key);
+		}
+		return k.toString();
+	}
 
 	public String getKey() {
 		return key;
@@ -30,14 +38,6 @@ public class Vigenere {
 			
 		}
 		return result.toString();
-	}
-
-	private String extendKey(String key, int l) {
-		StringBuilder k = new StringBuilder();
-		while (k.length() <= l) {
-			k.append(key);
-		}
-		return k.toString();
 	}
 
 }

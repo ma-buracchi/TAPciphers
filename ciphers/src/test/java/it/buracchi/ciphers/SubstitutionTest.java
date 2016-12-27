@@ -20,25 +20,25 @@ public class SubstitutionTest {
 	@Test
 	public void testCoding() {
 		test = "test";
-		assertEquals("ztlz", sub.code(test));
+		assertEquals("ztlz", sub.code(test,true));
 	}
 
 	@Test
 	public void testCodingStrangeString() {
 		test = "a strange string with spaces,UPPERCASE, spaces and sp3c1al characters!!";
-		assertEquals("qlzkqfutlzkofuvozilhqetlxhhtkeqltlhqetlqfrlheqseiqkqeztkl", sub.code(test));
+		assertEquals("qlzkqfutlzkofuvozilhqetlxhhtkeqltlhqetlqfrlheqseiqkqeztkl", sub.code(test,true));
 	}
 	
 	@Test
 	public void testDecoding() {
 		test = "ztlz";
-		assertEquals("test", sub.decode(test));
+		assertEquals("test", sub.code(test,false));
 	}
 
 	@Test
 	public void testDecodingStrangeString() {
 		test = "qlzkqfutlzkofuvozilhqetlxhhtkeqltlhqetlqfrlheqseiqkqeztkl";
-		assertEquals("astrangestringwithspacesuppercasespacesandspcalcharacters", sub.decode(test));
+		assertEquals("astrangestringwithspacesuppercasespacesandspcalcharacters", sub.code(test,false));
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
