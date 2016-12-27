@@ -18,13 +18,13 @@ public class VigenereTest {
 	@Test
 	public void testCoding() {
 		vigenere = new Vigenere("test","testmessage");
-		assertEquals("mikmfikltkw", vigenere.code());
+		assertEquals("mikmfikltkw", vigenere.code(true));
 	}
 	
 	@Test
 	public void testDecoding() {
 		vigenere = new Vigenere("test","mikmfikltkw");
-		assertEquals("testmessage", vigenere.decode());
+		assertEquals("testmessage", vigenere.code(false));
 	}
 
 }
