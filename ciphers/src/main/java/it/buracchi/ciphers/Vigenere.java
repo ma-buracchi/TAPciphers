@@ -4,14 +4,11 @@ public class Vigenere {
 
 	private String key;
 	private String message;
-	private StringBuilder result;
-	private InputManager im;
 
 	public Vigenere(String key, String msg) {
-		im = new InputManager();
+		InputManager im = new InputManager();
 		this.message = im.process(msg);
-		this.key = extendKey(key, msg.length());
-		result = new StringBuilder();
+		this.key = extendKey(im.process(key), message.length());
 	}
 	
 	private String extendKey(String key, int l) {
@@ -27,6 +24,7 @@ public class Vigenere {
 	}
 
 	public String code(boolean coding) {
+		StringBuilder result = new StringBuilder();
 		for (int i = 0; i < message.length(); i++) {
 			int m = (int) (message.charAt(i)) - 97;
 			int k = (int) (key.charAt(i)) - 97;
