@@ -6,24 +6,28 @@ import org.junit.Test;
 
 public class VigenereTest {
 
-	Vigenere vigenere;
+	private Vigenere vigenere;
+	private boolean coding;
+	private boolean decoding;
 
 	@Test
 	public void testKeyExtension() {
 		vigenere = new Vigenere("test","testmessage");
 		assertEquals("testtesttest", vigenere.getKey());
+		coding = true;
+		decoding = false;
 	}
 	
 	@Test
 	public void testCoding() {
 		vigenere = new Vigenere("test","testmessage");
-		assertEquals("mikmfikltkw", vigenere.code(true));
+		assertEquals("mikmfikltkw", vigenere.code(coding));
 	}
 	
 	@Test
 	public void testDecoding() {
 		vigenere = new Vigenere("test","mikmfikltkw");
-		assertEquals("testmessage", vigenere.code(false));
+		assertEquals("testmessage", vigenere.code(decoding));
 	}
 
 }
