@@ -8,6 +8,8 @@
 
 Implemented ciphers:
  - Shift cipher
- 
- Working on:
  - Substitution cipher
+
+Working on:
+ - Vigenere cipher
+ 
