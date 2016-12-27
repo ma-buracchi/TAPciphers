@@ -6,17 +6,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class VigenereTest {
-	
+
 	Vigenere vigenere;
 
 	@Before
 	public void setUp() {
-		vigenere = new Vigenere();
+		vigenere = new Vigenere("test","testmessage");
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testKeyExtension() {
+		assertEquals("testtesttest", vigenere.getKey());
 	}
 
 }
