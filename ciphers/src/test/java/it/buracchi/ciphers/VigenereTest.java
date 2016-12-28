@@ -39,6 +39,12 @@ public class VigenereTest {
 	}
 	
 	@Test
+	public void testCodingEmptyString() {
+		vigenere = new Vigenere("test","");
+		assertEquals("", vigenere.code());
+	}
+	
+	@Test
 	public void testCodingStrangeString() {
 		vigenere = new Vigenere("test","a strange string with spaces,UPPERCASE, spaces and sp3c1al characters!!");
 		assertEquals("twlktryxlxjbgkobmlkitgwlnthxkgslxwhtviktghkivedvaejtvxwkl", vigenere.code());
@@ -48,6 +54,12 @@ public class VigenereTest {
 	public void testDecoding() {
 		vigenere = new Vigenere("test","mikmfikltkw");
 		assertEquals("testmessage", vigenere.decode());
+	}
+	
+	@Test
+	public void testDecodingEmptyString() {
+		vigenere = new Vigenere("test","");
+		assertEquals("", vigenere.decode());
 	}
 	
 	@Test

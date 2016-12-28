@@ -9,6 +9,10 @@ public class Shift {
 	public Shift() {
 		this.message = "";
 	}
+	
+	public String getMessage() {
+		return message;
+	}
 
 	public String code(String msg, int shiftPosition) {
 		processMessage(msg);

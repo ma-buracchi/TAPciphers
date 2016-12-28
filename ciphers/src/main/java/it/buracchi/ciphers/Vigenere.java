@@ -18,7 +18,7 @@ public class Vigenere {
 			throw new IllegalArgumentException("Key must be longer than 0");
 		}
 		StringBuilder k = new StringBuilder();
-		while (k.length() <= l) {
+		while (k.length() < l) {
 			k.append(key);
 		}
 		return k.toString();

@@ -15,6 +15,11 @@ public class ShiftTest {
 		shift = new Shift();
 		test = "test";
 	}
+	
+	@Test
+	public void creation() {
+		assertEquals("", shift.getMessage());
+	}
 
 	@Test
 	public void testShiftCodingZeroPosition() {
