@@ -14,6 +14,9 @@ public class Vigenere {
 	}
 
 	private static String extendKey(String key, int l) {
+		if(key.isEmpty()){
+			throw new IllegalArgumentException("Key must be longer than 0");
+		}
 		StringBuilder k = new StringBuilder();
 		while (k.length() <= l) {
 			k.append(key);

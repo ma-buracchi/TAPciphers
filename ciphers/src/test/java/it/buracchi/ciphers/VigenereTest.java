@@ -27,6 +27,11 @@ public class VigenereTest {
 		assertEquals("testtesttest", vigenere.getKey());
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void testEmptyKey() {
+		vigenere = new Vigenere("","testmessage");
+	}
+	
 	@Test
 	public void testCoding() {
 		vigenere = new Vigenere("test","testmessage");

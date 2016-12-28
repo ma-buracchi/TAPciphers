@@ -30,6 +30,12 @@ public class SubstitutionTest {
 	}
 	
 	@Test
+	public void testCodingEmptyString() {
+		test = "";
+		assertEquals("", sub.code(test));
+	}
+	
+	@Test
 	public void testDecoding() {
 		test = "ztlz";
 		assertEquals("test", sub.decode(test));
@@ -39,6 +45,12 @@ public class SubstitutionTest {
 	public void testDecodingStrangeString() {
 		test = "qlzkqfutlzkofuvozilhqetlxhhtkeqltlhqetlqfrlheqseiqkqeztkl";
 		assertEquals("astrangestringwithspacesuppercasespacesandspcalcharacters", sub.decode(test));
+	}
+	
+	@Test
+	public void testDecodingEmptyString() {
+		test = "";
+		assertEquals("", sub.decode(test));
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
