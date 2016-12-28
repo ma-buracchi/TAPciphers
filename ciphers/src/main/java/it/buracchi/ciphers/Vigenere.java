@@ -11,7 +11,7 @@ public class Vigenere {
 		this.key = extendKey(im.process(key), message.length());
 	}
 	
-	private String extendKey(String key, int l) {
+	private static String extendKey(String key, int l) {
 		StringBuilder k = new StringBuilder();
 		while (k.length() <= l) {
 			k.append(key);

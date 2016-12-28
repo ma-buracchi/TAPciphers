@@ -1,9 +1,11 @@
 package it.buracchi.ciphers;
 
+import java.util.Locale;
+
 public class InputManager {
 
 	public String process(String msg) {
-		return msg.replaceAll("[^A-Za-z]", "").toLowerCase();
+		return msg.replaceAll("[^A-Za-z]", "").toLowerCase(Locale.ENGLISH);
 	}
 
 	public String checkAlphabet(String alphabet) {
@@ -15,7 +17,7 @@ public class InputManager {
 				throw new IllegalArgumentException("Letters from A to z are the only available characters");
 			}
 		}
-		return alphabet.toLowerCase();
+		return alphabet.toLowerCase(Locale.ENGLISH);
 	}
 
 }

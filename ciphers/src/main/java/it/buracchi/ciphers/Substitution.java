@@ -7,7 +7,7 @@ public class Substitution {
 
 	private BiMap<Character, Character> convertingTable;
 	private StringBuilder res;
-	InputManager im;
+	private InputManager im;
 
 	public Substitution(String newAlphabet) {
 		im = new InputManager();

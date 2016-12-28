@@ -4,6 +4,10 @@ public class Shift {
 
 	private String message;
 
+	public Shift() {
+		this.message = "";
+	}
+
 	public String code(String msg, int shiftPosition, boolean coding) {
 		processMessage(msg);
 		StringBuilder result = new StringBuilder();
