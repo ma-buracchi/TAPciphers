@@ -3,22 +3,27 @@ package it.buracchi.ciphers;
 public class Shift {
 
 	private String message;
+	public static final int ASCII_OFFSET = 97;
+	public static final int ALPHABET_LENGTH = 26;
 
 	public Shift() {
 		this.message = "";
 	}
 
-	public String code(String msg, int shiftPosition, boolean coding) {
+	public String code(String msg, int shiftPosition) {
 		processMessage(msg);
 		StringBuilder result = new StringBuilder();
-		if (coding) {
-			for (int i = 0; i < message.length(); i++) {
-				result.append((char) (((message.charAt(i) - 97 + shiftPosition) % 26) + 97));
-			}
-		} else {
-			for (int i = 0; i < message.length(); i++) {
-				result.append((char) (((message.charAt(i) - 97 - shiftPosition + 26) % 26) + 97));
-			}
+		for (int i = 0; i < message.length(); i++) {
+			result.append((char) (((message.charAt(i) - ASCII_OFFSET + shiftPosition) % ALPHABET_LENGTH) + ASCII_OFFSET));
+		}
+		return result.toString();
+	}
+
+	public String decode(String msg, int shiftPosition) {
+		processMessage(msg);
+		StringBuilder result = new StringBuilder();
+		for (int i = 0; i < message.length(); i++) {
+			result.append((char) (((message.charAt(i) - ASCII_OFFSET - shiftPosition + ALPHABET_LENGTH) % ALPHABET_LENGTH) + ASCII_OFFSET));
 		}
 		return result.toString();
 	}

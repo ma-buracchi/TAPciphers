@@ -22,52 +22,52 @@ public class ShiftTest {
 
 	@Test
 	public void testShiftCodingZeroPosition() {
-		assertEquals("test", shift.code(test, 0, coding));
+		assertEquals("test", shift.code(test, 0));
 	}
 
 	@Test
 	public void testShiftCodingOnePosition() {
-		assertEquals("uftu", shift.code(test, 1, coding));
+		assertEquals("uftu", shift.code(test, 1));
 	}
 
 	@Test
 	public void testShiftCodingTwentySixPosition() {
-		assertEquals("test", shift.code(test, 26, coding));
+		assertEquals("test", shift.code(test, 26));
 	}
 
 	@Test
 	public void testShiftCodingTwentySevenPosition() {
-		assertEquals("uftu", shift.code(test, 27, coding));
+		assertEquals("uftu", shift.code(test, 27));
 	}
 
 	@Test
 	public void testShiftCodingNegativePosition() {
-		assertEquals("sdrs", shift.code(test, -1, coding));
+		assertEquals("sdrs", shift.code(test, -1));
 	}
 	
 	@Test
 	public void testShiftDecodingZeroPosition() {
-		assertEquals(test, shift.code("test", 0, decoding));
+		assertEquals(test, shift.decode("test", 0));
 	}
 	
 	@Test
 	public void testShiftDecodingOnePosition() {
-		assertEquals(test, shift.code("uftu", 1, decoding));
+		assertEquals(test, shift.decode("uftu", 1));
 	}
 	
 	@Test
 	public void testShiftDecodingTwentySixPosition() {
-		assertEquals(test, shift.code("test", 26, decoding));
+		assertEquals(test, shift.decode("test", 26));
 	}
 	
 	@Test
 	public void testShiftDecodingTwentySevenPosition() {
-		assertEquals(test, shift.code("uftu", 27, decoding));
+		assertEquals(test, shift.decode("uftu", 27));
 	}
 	
 	@Test
 	public void testShiftDecodingNegativePosition() {
-		assertEquals(test, shift.code("sdrs", -1, decoding));
+		assertEquals(test, shift.decode("sdrs", -1));
 	}
 
 }
