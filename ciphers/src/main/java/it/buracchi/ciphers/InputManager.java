@@ -5,7 +5,7 @@ import java.util.Locale;
 public class InputManager {
 	
 	public static final int ALPHABET_LENGTH = 26;
-	public static final int ASCII_a = 65;
+	public static final int ASCII_A_LOWERCASE = 65;
 	public static final int ASCII_Z = 122;
 
 	public String process(String msg) {
@@ -17,7 +17,7 @@ public class InputManager {
 			throw new IllegalArgumentException("New alphabet must be 26 characters long");
 		}
 		for (int i = 0; i < alphabet.length(); i++) {
-			if ((int) (alphabet.charAt(i)) < ASCII_a || (int) (alphabet.charAt(i)) > ASCII_Z) {
+			if ((int) (alphabet.charAt(i)) < ASCII_A_LOWERCASE || (int) (alphabet.charAt(i)) > ASCII_Z) {
 				throw new IllegalArgumentException("Letters from A to z are the only available characters");
 			}
 		}

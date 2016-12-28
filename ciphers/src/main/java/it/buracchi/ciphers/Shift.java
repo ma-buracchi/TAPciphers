@@ -14,7 +14,8 @@ public class Shift {
 		processMessage(msg);
 		StringBuilder result = new StringBuilder();
 		for (int i = 0; i < message.length(); i++) {
-			result.append((char) (((message.charAt(i) - ASCII_OFFSET + shiftPosition) % ALPHABET_LENGTH) + ASCII_OFFSET));
+			result.append(
+					(char) (((message.charAt(i) - ASCII_OFFSET + shiftPosition) % ALPHABET_LENGTH) + ASCII_OFFSET));
 		}
 		return result.toString();
 	}
@@ -23,7 +24,9 @@ public class Shift {
 		processMessage(msg);
 		StringBuilder result = new StringBuilder();
 		for (int i = 0; i < message.length(); i++) {
-			result.append((char) (((message.charAt(i) - ASCII_OFFSET - shiftPosition + ALPHABET_LENGTH) % ALPHABET_LENGTH) + ASCII_OFFSET));
+			result.append(
+					(char) (((message.charAt(i) - ASCII_OFFSET - shiftPosition + ALPHABET_LENGTH) % ALPHABET_LENGTH)
+							+ ASCII_OFFSET));
 		}
 		return result.toString();
 	}
