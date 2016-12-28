@@ -10,39 +10,35 @@ public class SubstitutionTest {
 	private Substitution sub;
 	private String test;
 	private String newAlphabet;
-	private boolean coding;
-	private boolean decoding;
 
 	@Before
 	public void setup() {
 		newAlphabet = "qwertyuiopasdfghjklzxcvbnm";
 		sub = new Substitution(newAlphabet);
-		coding = true;
-		decoding = false;
 	}
 
 	@Test
 	public void testCoding() {
 		test = "test";
-		assertEquals("ztlz", sub.code(test,coding));
+		assertEquals("ztlz", sub.code(test));
 	}
 
 	@Test
 	public void testCodingStrangeString() {
 		test = "a strange string with spaces,UPPERCASE, spaces and sp3c1al characters!!";
-		assertEquals("qlzkqfutlzkofuvozilhqetlxhhtkeqltlhqetlqfrlheqseiqkqeztkl", sub.code(test,coding));
+		assertEquals("qlzkqfutlzkofuvozilhqetlxhhtkeqltlhqetlqfrlheqseiqkqeztkl", sub.code(test));
 	}
 	
 	@Test
 	public void testDecoding() {
 		test = "ztlz";
-		assertEquals("test", sub.code(test,decoding));
+		assertEquals("test", sub.decode(test));
 	}
 
 	@Test
 	public void testDecodingStrangeString() {
 		test = "qlzkqfutlzkofuvozilhqetlxhhtkeqltlhqetlqfrlheqseiqkqeztkl";
-		assertEquals("astrangestringwithspacesuppercasespacesandspcalcharacters", sub.code(test,decoding));
+		assertEquals("astrangestringwithspacesuppercasespacesandspcalcharacters", sub.decode(test));
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
