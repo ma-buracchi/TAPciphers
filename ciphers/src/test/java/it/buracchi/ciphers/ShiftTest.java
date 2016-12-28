@@ -17,7 +17,7 @@ public class ShiftTest {
 	}
 	
 	@Test
-	public void creation() {
+	public void testCreation() {
 		assertEquals("", shift.getMessage());
 	}
 
