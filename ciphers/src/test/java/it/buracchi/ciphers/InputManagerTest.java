@@ -17,11 +17,11 @@ public class InputManagerTest {
 	}
 
 	@Test
-	public void testStringOk() {
+	public void testInputOk() {
 		test = "test";
 		assertEquals("test", im.process(test));
 	}
-
+	
 	@Test
 	public void testIllegalCharacterInput() {
 		test = "te:st";
@@ -38,6 +38,12 @@ public class InputManagerTest {
 	public void testInputWithUppercase() {
 		test = "tEsT";
 		assertEquals("test", im.process(test));
+	}
+	
+	@Test
+	public void testEmptyInput() {
+		test = "";
+		assertEquals("", im.process(test));
 	}
 	
 	@Test
