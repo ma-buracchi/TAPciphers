@@ -9,15 +9,11 @@ public class ShiftTest {
 
 	private Shift shift;
 	private String test;
-	boolean coding;
-	boolean decoding;
 
 	@Before
 	public void setup() {
 		shift = new Shift();
 		test = "test";
-		coding = true;
-		decoding = false;
 	}
 
 	@Test
@@ -43,6 +39,18 @@ public class ShiftTest {
 	@Test
 	public void testShiftCodingNegativePosition() {
 		assertEquals("sdrs", shift.code(test, -1));
+	}
+	
+	@Test
+	public void testShiftCodingEmptyString() {
+		test = "";
+		assertEquals("", shift.code(test, 1));
+	}
+	
+	@Test
+	public void testShiftCodingStrangeString() {
+		test = "T3es T1!";
+		assertEquals("test", shift.code(test, 0));
 	}
 	
 	@Test
