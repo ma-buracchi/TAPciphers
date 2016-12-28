@@ -11,7 +11,6 @@ public class OneTimePadTest {
 	@Test
 	public void testRandomKeyAutoCreation() {
 		otp = new OneTimePad("testmessage");
-		System.out.println(otp.getKey());
 		assertNotEquals("", otp.getKey());
 	}
 
@@ -19,8 +18,7 @@ public class OneTimePadTest {
 	public void testRandomAutoCreatedKeyLength() {
 		String test = "testmessage";
 		otp = new OneTimePad(test);
-		System.out.println(otp.getKey());
-		assert (otp.getKey().length() == test.length());
+		assertEquals (otp.getKey().length(), test.length());
 	}
 
 }
