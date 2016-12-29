@@ -8,10 +8,10 @@ public class Substitution {
 	public static final int ASCII_OFFSET = 97;
 	private BiMap<Character, Character> convertingTable;
 	private StringBuilder res;
-	private InputManager im;
+	private Parser im;
 
-	public Substitution(String newAlphabet) {
-		im = new InputManager();
+	public Substitution(Parser parser, String newAlphabet) {
+		im = parser;
 		setupConvertingTable(im.checkAlphabet(newAlphabet));
 		res = new StringBuilder();
 	}
