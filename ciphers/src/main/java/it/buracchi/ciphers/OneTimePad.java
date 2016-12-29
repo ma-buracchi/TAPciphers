@@ -5,25 +5,38 @@ import java.security.SecureRandom;
 public class OneTimePad {
 
 	private String key;
-	private String message;
+	private Parser parser;
 	private SecureRandom generator = new SecureRandom();
 	public static final int BIT_CAP = 2;
 
-	public OneTimePad(String msg) {
-		this.message = msg;
-		this.key = createKey();
+	public OneTimePad(Parser prs, String key) {
+		this.parser = prs;
+		this.key = prs.process(key);
+	}
+
+	public OneTimePad(Parser prs) {
+		this.parser = prs;
 	}
 
 	public String getKey() {
 		return key;
 	}
 
-	private String createKey() {
-		StringBuilder k = new StringBuilder();
-		while (k.length() != message.length()) {
-			k.append(generator.nextInt(BIT_CAP));
+	public String code(String msg) {
+		parser.process(msg);
+		setupKey(msg);
+		StringBuilder res = new StringBuilder();
+		return res.toString();
+	}
+
+	private void setupKey(String msg) {
+		if (key.length() == 0) {
+			StringBuilder k = new StringBuilder();
+			while (k.length() != msg.length()) {
+				k.append(generator.nextInt(BIT_CAP));
+			}
+			key = k.toString();
 		}
-		return k.toString();
 	}
 
 }
