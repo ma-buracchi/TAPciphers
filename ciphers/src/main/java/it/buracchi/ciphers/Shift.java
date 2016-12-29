@@ -3,10 +3,12 @@ package it.buracchi.ciphers;
 public class Shift {
 
 	private String message;
+	private Parser im;
 	public static final int ASCII_OFFSET = 97;
 	public static final int ALPHABET_LENGTH = 26;
 
-	public Shift() {
+	public Shift(Parser parser) {
+		this.im = parser;
 		this.message = "";
 	}
 	
@@ -36,7 +38,6 @@ public class Shift {
 	}
 
 	private void processMessage(String msg) {
-		InputManager im = new InputManager();
 		message = im.process(msg);
 	}
 

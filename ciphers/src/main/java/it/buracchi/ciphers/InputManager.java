@@ -2,16 +2,18 @@ package it.buracchi.ciphers;
 
 import java.util.Locale;
 
-public class InputManager {
+public class InputManager implements Parser {
 
 	public static final int ALPHABET_LENGTH = 26;
 	public static final int ASCII_A_LOWERCASE = 65;
 	public static final int ASCII_Z = 122;
 
+	@Override
 	public String process(String msg) {
 		return msg.replaceAll("[^A-Za-z]", "").toLowerCase(Locale.ENGLISH);
 	}
 
+	@Override
 	public String checkAlphabet(String alphabet) {
 		if (alphabet.length() != ALPHABET_LENGTH) {
 			throw new IllegalArgumentException("New alphabet must be 26 characters long");
