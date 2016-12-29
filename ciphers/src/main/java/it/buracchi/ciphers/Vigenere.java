@@ -4,31 +4,23 @@ public class Vigenere {
 
 	public static final int ASCII_OFFSET = 97;
 	public static final int ALPHABET_LENGTH = 26;
+	private Parser im;
 	private String key;
-	private String message;
 
-	public Vigenere(String key, String msg) {
-		InputManager im = new InputManager();
-		this.message = im.process(msg);
-		this.key = extendKey(im.process(key), message.length());
-	}
-
-	private static String extendKey(String key, int l) {
-		if(key.isEmpty()){
-			throw new IllegalArgumentException("Key must be longer than 0");
-		}
-		StringBuilder k = new StringBuilder();
-		while (k.length() < l) {
-			k.append(key);
-		}
-		return k.toString();
+	public Vigenere(Parser parser, String key) {
+		im = parser;
+		this.key = im.process(key);
 	}
 
 	public String getKey() {
 		return key;
 	}
 
-	public String code() {
+	public String code(String msg) {
+		String message = im.process(msg);
+		if (key.length() < message.length()) {
+			key = extendKey(key, message.length());
+		}
 		StringBuilder result = new StringBuilder();
 		for (int i = 0; i < message.length(); i++) {
 			int m = (int) (message.charAt(i)) - ASCII_OFFSET;
@@ -38,7 +30,11 @@ public class Vigenere {
 		return result.toString();
 	}
 
-	public String decode() {
+	public String decode(String msg) {
+		String message = im.process(msg);
+		if (key.length() < message.length()) {
+			key = extendKey(key, message.length());
+		}
 		StringBuilder result = new StringBuilder();
 		for (int i = 0; i < message.length(); i++) {
 			int m = (int) (message.charAt(i)) - ASCII_OFFSET;
@@ -46,6 +42,17 @@ public class Vigenere {
 			result.append((char) (((m - k + ALPHABET_LENGTH) % ALPHABET_LENGTH) + ASCII_OFFSET));
 		}
 		return result.toString();
+	}
+
+	private static String extendKey(String key, int l) {
+		if (key.isEmpty()) {
+			throw new IllegalArgumentException("Key must be longer than 0");
+		}
+		StringBuilder k = new StringBuilder();
+		while (k.length() < l) {
+			k.append(key);
+		}
+		return k.toString();
 	}
 
 }
