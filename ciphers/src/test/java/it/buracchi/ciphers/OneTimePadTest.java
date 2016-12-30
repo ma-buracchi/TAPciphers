@@ -32,16 +32,17 @@ public class OneTimePadTest {
 	}
 
 	@Test
-	public void testCodingWithKey() {
+	public void testCoding() {
 		when(parser.process("c")).thenReturn("c");
 		when(parser.process("00001")).thenReturn("00001");
+		when(parser.checkKey("00001",5)).thenReturn("00001");
 		String key = "00001";
 		otp = new OneTimePad(parser);
 		assertEquals("00011", otp.code("c", key));
 	}
-
+	
 	@Test
-	public void testDecodingWithKey() {
+	public void testDecoding() {
 		when(parser.process("00011")).thenReturn("00011");
 		when(parser.process("00001")).thenReturn("00001");
 		String key = "00001";

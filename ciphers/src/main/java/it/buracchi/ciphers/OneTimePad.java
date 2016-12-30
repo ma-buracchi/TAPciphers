@@ -7,7 +7,6 @@ import com.google.common.collect.HashBiMap;
 
 public class OneTimePad {
 
-	private String key;
 	private Parser parser;
 	private SecureRandom generator;
 	private BiMap<Character, String> convert;
@@ -21,13 +20,19 @@ public class OneTimePad {
 		initializeConvert();
 		this.parser = prs;
 		this.generator = new SecureRandom();
-		this.key = "";
+	}
+	
+	public String createKey(int l) {
+		StringBuilder result = new StringBuilder();
+		while (result.length() != l * CHARACTER_LENGTH_IN_BIT) {
+			result.append(convert.get(generator.nextInt(ALPHABET_CAP) + ASCII_OFFSET));
+		}
+		return result.toString();
 	}
 
 	public String code(String msg, String k) {
 		String message = stringToBin(parser.process(msg));
-		key = k;
-		parser.checkKey(key, message.length());
+		String key = parser.checkKey(k, message.length());
 		StringBuilder res = new StringBuilder();
 		for (int i = 0; i < message.length(); i++) {
 			res.append((int) message.charAt(i) ^ (int) key.charAt(i));
@@ -37,7 +42,7 @@ public class OneTimePad {
 
 	public String decode(String msg, String k) {
 		parser.checkKey(k, msg.length());
-		key = k;
+		String key = k;
 		StringBuilder res = new StringBuilder();
 		for (int i = 0; i < msg.length(); i++) {
 			int messageChar = Character.getNumericValue(msg.charAt(i));
@@ -63,14 +68,6 @@ public class OneTimePad {
 			res.append(convert.inverse().get(temp));
 		}
 		return res.toString();
-	}
-
-	public String createKey(int l) {
-		StringBuilder result = new StringBuilder();
-		while (result.length() != l * CHARACTER_LENGTH_IN_BIT) {
-			result.append(convert.get(generator.nextInt(ALPHABET_CAP) + ASCII_OFFSET));
-		}
-		return result.toString();
 	}
 
 	private void initializeConvert() {
