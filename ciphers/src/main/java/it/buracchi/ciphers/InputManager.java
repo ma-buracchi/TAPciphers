@@ -30,10 +30,10 @@ public class InputManager implements Parser {
 
 	@Override
 	public String checkKey(String key, int l) {
-		for(Character c : key.toCharArray()){
-			if(key.length()!=l){
-				throw new IllegalArgumentException("Key length and message length must be the same");
-			}
+		if (key.length() != l) {
+			throw new IllegalArgumentException("Key length and message length must be the same");
+		}
+		for (Character c : key.toCharArray()) {
 			if ((int) c != ASCII_0 && (int) c != ASCII_1) {
 				throw new IllegalArgumentException("Key must be composed just by 0 or 1");
 			}
