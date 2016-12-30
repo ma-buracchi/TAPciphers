@@ -6,16 +6,18 @@ public class OneTimePad {
 
 	private String key;
 	private Parser parser;
-	private SecureRandom generator = new SecureRandom();
+	private SecureRandom generator;
 	public static final int BIT_CAP = 2;
 
 	public OneTimePad(Parser prs, String key) {
 		this.parser = prs;
+		this.generator = new SecureRandom();
 		this.key = key;
 	}
 
 	public OneTimePad(Parser prs) {
 		this.parser = prs;
+		this.generator = new SecureRandom();
 		this.key = "";
 	}
 
