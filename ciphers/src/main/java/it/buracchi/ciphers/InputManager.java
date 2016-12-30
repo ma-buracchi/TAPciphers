@@ -7,6 +7,8 @@ public class InputManager implements Parser {
 	public static final int ALPHABET_LENGTH = 26;
 	public static final int ASCII_A_LOWERCASE = 65;
 	public static final int ASCII_Z = 122;
+	public static final int ASCII_0 = 48;
+	public static final int ASCII_1 = 49;
 
 	@Override
 	public String process(String msg) {
@@ -24,6 +26,16 @@ public class InputManager implements Parser {
 			}
 		}
 		return alphabet.toLowerCase(Locale.ENGLISH);
+	}
+
+	@Override
+	public String checkKey(String key) {
+		for(Character c : key.toCharArray()){
+			if ((int) c != ASCII_0 && (int) c != ASCII_1) {
+				throw new IllegalArgumentException("Key must be composed just by 0 or 1");
+			}
+		}
+		return key;
 	}
 
 }

@@ -81,5 +81,17 @@ public class InputManagerTest {
 		test = "qwertyuiopAsdfghjklzxcvbnm";
 		assertEquals("qwertyuiopasdfghjklzxcvbnm", im.checkAlphabet(test));
 	}
+	
+	@Test
+	public void testKeyChecking(){
+		test = "00001";
+		assertEquals(test, im.checkKey(test));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testWrongKeyChecking(){
+		test = "00a01";
+		assertEquals(test, im.checkKey(test));
+	}
 
 }
