@@ -2,26 +2,22 @@ package it.buracchi.ciphers;
 
 import java.security.SecureRandom;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
+
 public class OneTimePad {
 
 	private String key;
 	private Parser parser;
 	private SecureRandom generator;
+	private BiMap<Character, String> convert;
 	public static final int BIT_CAP = 2;
 	public static final int CHARACTER_LENGTH_IN_BIT = 5;
 	public static final int ASCII_OFFSET = 97;
 	public static final int ALPHABET_LENGTH = 26;
-	private String[] convert = { "00000", "00001", "00010", "00011", "00100", "00101", "00110", "00111", "01000",
-			"01001", "01010", "01011", "01100", "01101", "01110", "01111", "10000", "10001", "10010", "10011", "10100",
-			"10101", "10110", "10111", "11000", "11001" };
-
-	public OneTimePad(Parser prs, String key) {
-		this.parser = prs;
-		this.generator = new SecureRandom();
-		this.key = key;
-	}
 
 	public OneTimePad(Parser prs) {
+		initializeConvert();
 		this.parser = prs;
 		this.generator = new SecureRandom();
 		this.key = "";
@@ -31,45 +27,83 @@ public class OneTimePad {
 		return key;
 	}
 
-	public void setKey(String k) {
-		key = k;
-	}
-
-	public String code(String msg) {
+	public String code(String msg, String k) {
 		String message = stringToBin(parser.process(msg));
-		setupKey(message);
+		key = k;
+		parser.checkKey(key, message.length());
 		StringBuilder res = new StringBuilder();
 		for (int i = 0; i < message.length(); i++) {
-			res.append((int)message.charAt(i)^(int)key.charAt(i));
+			res.append((int) message.charAt(i) ^ (int) key.charAt(i));
 		}
 		return res.toString();
+	}
+
+	public String decode(String msg, String k) {
+		parser.checkKey(k, msg.length());
+		key = k;
+		StringBuilder res = new StringBuilder();
+		for (int i = 0; i < msg.length(); i++) {
+			int messageChar = Character.getNumericValue(msg.charAt(i));
+			int keyChar = Character.getNumericValue(key.charAt(i));
+			res.append(messageChar ^ keyChar);
+		}
+		return binToString(res.toString());
 	}
 
 	private String stringToBin(String msg) {
 		StringBuilder res = new StringBuilder();
 		for (Character c : msg.toCharArray()) {
-			res.append(convert[(int)c - ASCII_OFFSET]);
+			res.append(convert.get(c));
 		}
 		return res.toString();
 	}
 
-	private void setupKey(String msg) {
-		if (key.length() == 0) {
-			StringBuilder result = new StringBuilder();
-			while (result.length() != msg.length()) {
-				result.append(generator.nextInt(BIT_CAP));
-			}
-			key = result.toString();
-		} else {
-			parser.checkKey(key);
+	private String binToString(String msg) {
+		StringBuilder res = new StringBuilder();
+		int messageLength = msg.length() / 5;
+		for (int i = 0; i < messageLength; i++) {
+			String temp = msg.substring(i * 5, (i + 1) * 5);
+			res.append(convert.inverse().get(temp));
 		}
+		return res.toString();
 	}
 
 	public String createKey(int l) {
 		StringBuilder result = new StringBuilder();
 		while (result.length() != l * CHARACTER_LENGTH_IN_BIT) {
-			result.append(convert[generator.nextInt(ALPHABET_LENGTH)]);
+			result.append(convert.get(generator.nextInt(27) + ASCII_OFFSET));
 		}
 		return result.toString();
 	}
+
+	private void initializeConvert() {
+		convert = HashBiMap.create();
+		convert.put('a', "00000");
+		convert.put('b', "00001");
+		convert.put('c', "00010");
+		convert.put('d', "00011");
+		convert.put('e', "00100");
+		convert.put('f', "00101");
+		convert.put('g', "00110");
+		convert.put('h', "00111");
+		convert.put('i', "01000");
+		convert.put('j', "01001");
+		convert.put('k', "01010");
+		convert.put('l', "01011");
+		convert.put('m', "01100");
+		convert.put('n', "01101");
+		convert.put('o', "01110");
+		convert.put('p', "01111");
+		convert.put('q', "10000");
+		convert.put('r', "10001");
+		convert.put('s', "10010");
+		convert.put('t', "10011");
+		convert.put('u', "10100");
+		convert.put('v', "10101");
+		convert.put('w', "10110");
+		convert.put('x', "10111");
+		convert.put('y', "11000");
+		convert.put('z', "11001");
+	}
+
 }

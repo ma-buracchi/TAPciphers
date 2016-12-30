@@ -28,41 +28,25 @@ public class OneTimePadTest {
 	public void testCreatedKeyLength() {
 		when(parser.process("test")).thenReturn("test");
 		otp = new OneTimePad(parser);
-		assertEquals("test".length(), otp.createKey("test".length()).length()/CHARACTER_LENGTH_IN_BIT);
-	}
-	
-	@Test
-	public void testAutomaticKeyCreation() {
-		when(parser.process("test")).thenReturn("test");
-		otp = new OneTimePad(parser);
-		otp.code("test");
-		assertNotNull(otp.getKey());
-	}
-
-	@Test
-	public void testAutomaticCreatedKeyLength() {
-		when(parser.process("test")).thenReturn("test");
-		otp = new OneTimePad(parser);
-		otp.code("test");
-		assertEquals("test".length(), otp.getKey().length()/CHARACTER_LENGTH_IN_BIT);
-	}
-
-	@Test
-	public void testPassingKey() {
-		when(parser.process("test")).thenReturn("test");
-		when(parser.process("00000011110110101100")).thenReturn("00000011110110101100");
-		otp = new OneTimePad(parser, "00000011110110101100");
-		otp.code("test");
-		assertEquals("00000011110110101100", otp.getKey());
+		assertEquals("test".length(), otp.createKey("test".length()).length() / CHARACTER_LENGTH_IN_BIT);
 	}
 
 	@Test
 	public void testCodingWithKey() {
 		when(parser.process("c")).thenReturn("c");
+		when(parser.process("00001")).thenReturn("00001");
 		String key = "00001";
 		otp = new OneTimePad(parser);
-		otp.setKey(key);
-		assertEquals("00011", otp.code("c"));
+		assertEquals("00011", otp.code("c", key));
+	}
+
+	@Test
+	public void testDecodingWithKey() {
+		when(parser.process("00011")).thenReturn("00011");
+		when(parser.process("00001")).thenReturn("00001");
+		String key = "00001";
+		otp = new OneTimePad(parser);
+		assertEquals("c", otp.decode("00011", key));
 	}
 
 }
