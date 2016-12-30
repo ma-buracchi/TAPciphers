@@ -12,6 +12,7 @@ public class OneTimePad {
 	private SecureRandom generator;
 	private BiMap<Character, String> convert;
 	public static final int BIT_CAP = 2;
+	public static final int ALPHABET_CAP = 27;
 	public static final int CHARACTER_LENGTH_IN_BIT = 5;
 	public static final int ASCII_OFFSET = 97;
 	public static final int ALPHABET_LENGTH = 26;
@@ -21,10 +22,6 @@ public class OneTimePad {
 		this.parser = prs;
 		this.generator = new SecureRandom();
 		this.key = "";
-	}
-
-	public String getKey() {
-		return key;
 	}
 
 	public String code(String msg, String k) {
@@ -60,9 +57,9 @@ public class OneTimePad {
 
 	private String binToString(String msg) {
 		StringBuilder res = new StringBuilder();
-		int messageLength = msg.length() / 5;
+		int messageLength = msg.length() / CHARACTER_LENGTH_IN_BIT;
 		for (int i = 0; i < messageLength; i++) {
-			String temp = msg.substring(i * 5, (i + 1) * 5);
+			String temp = msg.substring(i * CHARACTER_LENGTH_IN_BIT, (i + 1) * CHARACTER_LENGTH_IN_BIT);
 			res.append(convert.inverse().get(temp));
 		}
 		return res.toString();
@@ -71,7 +68,7 @@ public class OneTimePad {
 	public String createKey(int l) {
 		StringBuilder result = new StringBuilder();
 		while (result.length() != l * CHARACTER_LENGTH_IN_BIT) {
-			result.append(convert.get(generator.nextInt(27) + ASCII_OFFSET));
+			result.append(convert.get(generator.nextInt(ALPHABET_CAP) + ASCII_OFFSET));
 		}
 		return result.toString();
 	}
