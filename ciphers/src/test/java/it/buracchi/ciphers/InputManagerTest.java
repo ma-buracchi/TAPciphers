@@ -85,13 +85,19 @@ public class InputManagerTest {
 	@Test
 	public void testKeyChecking(){
 		test = "00001";
-		assertEquals(test, im.checkKey(test));
+		assertEquals(test, im.checkKey(test,test.length()));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testWrongKeyChecking(){
 		test = "00a01";
-		assertEquals(test, im.checkKey(test));
+		assertEquals(test, im.checkKey(test,test.length()));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testKeyLength(){
+		test = "00001";
+		assertEquals(test, im.checkKey(test,test.length()-1));
 	}
 
 }
