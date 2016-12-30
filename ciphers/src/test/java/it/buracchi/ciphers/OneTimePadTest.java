@@ -19,8 +19,7 @@ public class OneTimePadTest {
 	@Test
 	public void testRandomKeyAutoCreation() {
 		when(parser.process("testmessage")).thenReturn("testmessage");
-		when(parser.process("")).thenReturn("");
-		otp = new OneTimePad(parser, "");
+		otp = new OneTimePad(parser);
 		otp.code("testmessage");
 		assertNotEquals("", otp.getKey());
 		
@@ -29,10 +28,20 @@ public class OneTimePadTest {
 	@Test
 	public void testRandomAutoCreatedKeyLength() {
 		when(parser.process("testmessage")).thenReturn("testmessage");
-		when(parser.process("")).thenReturn("");
-		otp = new OneTimePad(parser, "");
+		otp = new OneTimePad(parser);
 		otp.code("testmessage");
-		assertEquals(otp.getKey().length(), "testmessage".length());
+		assertEquals("testmessage".length(), otp.getKey().length());
 	}
+	
+	@Test
+	public void testPassingKey() {
+		when(parser.process("test")).thenReturn("test");
+		when(parser.process("00000011110110101100")).thenReturn("00000011110110101100");
+		otp = new OneTimePad(parser, "00000011110110101100");
+		otp.code("test");
+		assertEquals("00000011110110101100", otp.getKey());
+	}
+	
+	
 
 }

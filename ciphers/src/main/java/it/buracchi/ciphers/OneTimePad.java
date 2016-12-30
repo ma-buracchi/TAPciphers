@@ -11,11 +11,12 @@ public class OneTimePad {
 
 	public OneTimePad(Parser prs, String key) {
 		this.parser = prs;
-		this.key = prs.process(key);
+		this.key = key;
 	}
 
 	public OneTimePad(Parser prs) {
 		this.parser = prs;
+		this.key = "";
 	}
 
 	public String getKey() {
@@ -31,12 +32,13 @@ public class OneTimePad {
 
 	private void setupKey(String msg) {
 		if (key.length() == 0) {
-			StringBuilder k = new StringBuilder();
-			while (k.length() != msg.length()) {
-				k.append(generator.nextInt(BIT_CAP));
+			StringBuilder result = new StringBuilder();
+			while (result.length() != msg.length()) {
+				result.append(generator.nextInt(BIT_CAP));
 			}
-			key = k.toString();
+			key = result.toString();
+		} else {
+			parser.checkKey(key);
 		}
 	}
-
 }
