@@ -5,7 +5,7 @@ import com.google.common.collect.HashBiMap;
 
 public class Substitution {
 
-	public static final int ASCII_OFFSET = 97;
+	private static final int ASCII_OFFSET = 97;
 	private BiMap<Character, Character> convertingTable;
 	private StringBuilder res;
 	private Parser im;
