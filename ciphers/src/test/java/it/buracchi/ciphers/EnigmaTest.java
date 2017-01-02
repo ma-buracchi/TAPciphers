@@ -21,8 +21,8 @@ public class EnigmaTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testCreation() {
+		assertNotNull(enigma);
 	}
 
 }
