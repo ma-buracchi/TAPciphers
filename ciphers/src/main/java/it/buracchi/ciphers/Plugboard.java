@@ -1,5 +1,5 @@
 package it.buracchi.ciphers;
 
-public class Plugboard {
+public interface Plugboard {
 
 }
