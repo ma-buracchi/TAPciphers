@@ -16,13 +16,13 @@ public class ReflectorTest {
 	@Test
 	public void testBReflectorCoding() {
 		reflector = new Reflector("B");
-		assertEquals('y', reflector.coding('a'));
+		assertEquals('y', reflector.reflecting('a'));
 	}
 
 	@Test
 	public void testCReflectorCoding() {
 		reflector = new Reflector("C");
-		assertEquals('f', reflector.coding('a'));
+		assertEquals('f', reflector.reflecting('a'));
 	}
 
 	@Test(expected = IllegalArgumentException.class)

@@ -25,7 +25,7 @@ public class Reflector {
 		}
 	}
 
-	public char coding(char letter) {
+	public char reflecting(char letter) {
 		return configuration.get(letter);
 	}
 
