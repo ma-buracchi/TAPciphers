@@ -1,10 +1,10 @@
 package it.buracchi.ciphers;
 
+import static it.buracchi.ciphers.Constants.*;
+
 public class Shift {
 
 	private Parser im;
-	private static final int ASCII_OFFSET = 97;
-	private static final int ALPHABET_LENGTH = 26;
 
 	public Shift(Parser parser) {
 		this.im = parser;
