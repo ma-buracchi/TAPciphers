@@ -28,6 +28,10 @@ public class AffineTest {
 		assertEquals("krhk", affine.coding("test", 3, 5));
 	}
 	
-	
+	@Test
+	public void testDecoding() {
+		when(parser.process("krhk")).thenReturn("krhk");
+		assertEquals("test", affine.decoding("krhk", 3, 5));
+	}
 
 }
