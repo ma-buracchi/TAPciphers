@@ -10,11 +10,9 @@ public class OneTimePad {
 	private Parser parser;
 	private SecureRandom generator;
 	private BiMap<Character, String> convert;
-	public static final int BIT_CAP = 2;
-	public static final int ALPHABET_CAP = 27;
-	public static final int CHARACTER_LENGTH_IN_BIT = 5;
-	public static final int ASCII_OFFSET = 97;
-	public static final int ALPHABET_LENGTH = 26;
+	private static final int ALPHABET_CAP = 27;
+	private static final int CHARACTER_LENGTH_IN_BIT = 5;
+	private static final int ASCII_OFFSET = 97;
 
 	public OneTimePad(Parser prs) {
 		initializeConvert();
