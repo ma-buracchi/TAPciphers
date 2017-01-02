@@ -1,9 +1,9 @@
 package it.buracchi.ciphers;
 
+import static it.buracchi.ciphers.Constants.*;
+
 public class Vigenere {
 
-	private static final int ASCII_OFFSET = 97;
-	private static final int ALPHABET_LENGTH = 26;
 	private Parser im;
 	private String key;
 
