@@ -2,10 +2,10 @@ package it.buracchi.ciphers;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import static it.buracchi.ciphers.Constants.*;
 
 public class Substitution {
 
-	private static final int ASCII_OFFSET = 97;
 	private BiMap<Character, Character> convertingTable;
 	private StringBuilder res;
 	private Parser im;
