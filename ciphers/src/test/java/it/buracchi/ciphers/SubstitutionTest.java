@@ -27,14 +27,6 @@ public class SubstitutionTest {
 	}
 
 	@Test
-	public void testCodingStrangeString() {
-		when(parser.process("a strange string with spaces,UPPERCASE, spaces and sp3c1al characters!!"))
-				.thenReturn("astrangestringwithspacesuppercasespacesandspcalcharacters");
-		assertEquals("qlzkqfutlzkofuvozilhqetlxhhtkeqltlhqetlqfrlheqseiqkqeztkl",
-				sub.code("a strange string with spaces,UPPERCASE, spaces and sp3c1al characters!!"));
-	}
-
-	@Test
 	public void testCodingEmptyString() {
 		when(parser.process("")).thenReturn("");
 		assertEquals("", sub.code(""));
@@ -44,14 +36,6 @@ public class SubstitutionTest {
 	public void testDecoding() {
 		when(parser.process("ztlz")).thenReturn("ztlz");
 		assertEquals("test", sub.decode("ztlz"));
-	}
-
-	@Test
-	public void testDecodingStrangeString() {
-		when(parser.process("qlzkqfutlzkofuvozilhqetlxhhtkeqltlhqetlqfrlheqseiqkqeztkl"))
-				.thenReturn("qlzkqfutlzkofuvozilhqetlxhhtkeqltlhqetlqfrlheqseiqkqeztkl");
-		assertEquals("astrangestringwithspacesuppercasespacesandspcalcharacters",
-				sub.decode("qlzkqfutlzkofuvozilhqetlxhhtkeqltlhqetlqfrlheqseiqkqeztkl"));
 	}
 
 	@Test
