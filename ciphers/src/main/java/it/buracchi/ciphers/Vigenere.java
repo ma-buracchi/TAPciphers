@@ -2,8 +2,8 @@ package it.buracchi.ciphers;
 
 public class Vigenere {
 
-	public static final int ASCII_OFFSET = 97;
-	public static final int ALPHABET_LENGTH = 26;
+	private static final int ASCII_OFFSET = 97;
+	private static final int ALPHABET_LENGTH = 26;
 	private Parser im;
 	private String key;
 
