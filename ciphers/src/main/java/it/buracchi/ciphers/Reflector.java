@@ -9,9 +9,9 @@ public class Reflector {
 	private BiMap<Character, Character> configuration;
 
 	public Reflector(String name) {
-		if (name == "B") {
+		if ("B".equals(name)) {
 			setupRef("yruhqsldpxngokmiebfzcwvjat");
-		} else if (name == "C"){
+		} else if ("C".equals(name)){
 			setupRef("fvpjiaoyedrzxwgctkuqsbnmhl");
 		} else {
 			throw new IllegalArgumentException("Wrong reflector selected");
