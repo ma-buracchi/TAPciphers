@@ -18,7 +18,7 @@ public class AffineTest {
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testWrongCoefficient() {
+	public void testCodingWithWrongCoefficient() {
 		affine.coding("test", 2, 5);
 	}
 
