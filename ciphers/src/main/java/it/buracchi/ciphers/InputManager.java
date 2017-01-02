@@ -1,14 +1,9 @@
 package it.buracchi.ciphers;
 
 import java.util.Locale;
+import static it.buracchi.ciphers.Constants.*;
 
 public class InputManager implements Parser {
-
-	private static final int ALPHABET_LENGTH = 26;
-	private static final int ASCII_A_LOWERCASE = 65;
-	private static final int ASCII_Z = 122;
-	private static final int ASCII_0 = 48;
-	private static final int ASCII_1 = 49;
 
 	@Override
 	public String process(String msg) {
