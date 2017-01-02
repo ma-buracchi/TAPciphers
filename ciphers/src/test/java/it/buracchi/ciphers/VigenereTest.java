@@ -68,16 +68,6 @@ public class VigenereTest {
 	}
 
 	@Test
-	public void testCodingStrangeString() {
-		when(parser.process("test")).thenReturn("test");
-		when(parser.process("a strange string with spaces,UPPERCASE, spaces and sp3c1al characters!!"))
-				.thenReturn("astrangestringwithspacesuppercasespacesandspcalcharacters");
-		vigenere = new Vigenere(parser, "test");
-		assertEquals("twlktryxlxjbgkobmlkitgwlnthxkgslxwhtviktghkivedvaejtvxwkl",
-				vigenere.code("a strange string with spaces,UPPERCASE, spaces and sp3c1al characters!!"));
-	}
-
-	@Test
 	public void testDecoding() {
 		when(parser.process("test")).thenReturn("test");
 		when(parser.process("mikmfikltkw")).thenReturn("mikmfikltkw");
@@ -91,16 +81,6 @@ public class VigenereTest {
 		when(parser.process("")).thenReturn("");
 		vigenere = new Vigenere(parser, "test");
 		assertEquals("", vigenere.decode(""));
-	}
-
-	@Test
-	public void testDecodingStrangeString() {
-		when(parser.process("test")).thenReturn("test");
-		when(parser.process("twlktryxlxjbgkobmlkitgwlnthxkgslxwhtviktghkivedvaejtvxwkl"))
-				.thenReturn("twlktryxlxjbgkobmlkitgwlnthxkgslxwhtviktghkivedvaejtvxwkl");
-		vigenere = new Vigenere(parser, "test");
-		assertEquals("astrangestringwithspacesuppercasespacesandspcalcharacters",
-				vigenere.decode("twlktryxlxjbgkobmlkitgwlnthxkgslxwhtviktghkivedvaejtvxwkl"));
 	}
 
 }
