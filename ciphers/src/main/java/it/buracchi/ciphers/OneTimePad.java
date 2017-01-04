@@ -11,16 +11,22 @@ public class OneTimePad {
 	private SecureRandom generator;
 	private BiMap<Character, String> convert;
 
-	public OneTimePad(Parser prs) {
+	public OneTimePad(Parser p) {
 		initializeConvert();
-		this.parser = prs;
+		this.parser = p;
 		this.generator = new SecureRandom();
 	}
-	
+
 	public String createKey(int l) {
 		StringBuilder result = new StringBuilder();
 		while (result.length() != l * CHARACTER_LENGTH_IN_BIT) {
-			result.append(convert.get(generator.nextInt(ALPHABET_CAP) + ASCII_OFFSET));
+			char temp = (char) (generator.nextInt(ALPHABET_LENGTH) + ASCII_OFFSET);
+			if (convert.containsKey(temp)) {
+				result.append(temp);
+			} else {
+				throw new IllegalArgumentException("Something bad occurred in key creation");
+			}
+
 		}
 		return result.toString();
 	}
@@ -60,7 +66,11 @@ public class OneTimePad {
 		int messageLength = msg.length() / CHARACTER_LENGTH_IN_BIT;
 		for (int i = 0; i < messageLength; i++) {
 			String temp = msg.substring(i * CHARACTER_LENGTH_IN_BIT, (i + 1) * CHARACTER_LENGTH_IN_BIT);
-			res.append(convert.inverse().get(temp));
+			if (convert.containsValue(temp)) {
+				res.append(convert.inverse().get(temp));
+			} else {
+				throw new IllegalArgumentException("Message badly formatted");
+			}
 		}
 		return res.toString();
 	}

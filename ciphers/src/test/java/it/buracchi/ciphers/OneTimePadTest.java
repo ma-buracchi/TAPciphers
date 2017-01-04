@@ -42,12 +42,31 @@ public class OneTimePadTest {
 	}
 	
 	@Test
+	public void testLongCoding() {
+		when(parser.process("cg")).thenReturn("cg");
+		when(parser.process("0000100110")).thenReturn("0000100110");
+		when(parser.checkKey("0000100110",10)).thenReturn("0000100110");
+		String key = "0000100110";
+		otp = new OneTimePad(parser);
+		assertEquals("0001100000", otp.coding("cg", key));
+	}
+	
+	@Test
 	public void testDecoding() {
 		when(parser.process("00011")).thenReturn("00011");
 		when(parser.process("00001")).thenReturn("00001");
 		String key = "00001";
 		otp = new OneTimePad(parser);
 		assertEquals("c", otp.decoding("00011", key));
+	}
+	
+	@Test
+	public void testLongDecoding() {
+		when(parser.process("0001100000")).thenReturn("0001100000");
+		when(parser.process("0000100110")).thenReturn("0000100110");
+		String key = "0000100110";
+		otp = new OneTimePad(parser);
+		assertEquals("cg", otp.decoding("0001100000", key));
 	}
 
 }
