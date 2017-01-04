@@ -19,14 +19,12 @@ public class OneTimePadTest {
 
 	@Test
 	public void testKeyCreation() {
-		when(parser.process("test")).thenReturn("test");
 		otp = new OneTimePad(parser);
 		assertNotNull(otp.createKey("test".length()));
 	}
 
 	@Test
 	public void testCreatedKeyLength() {
-		when(parser.process("test")).thenReturn("test");
 		otp = new OneTimePad(parser);
 		assertEquals("test".length(), otp.createKey("test".length()).length() / CHARACTER_LENGTH_IN_BIT);
 	}

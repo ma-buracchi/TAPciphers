@@ -19,14 +19,8 @@ public class OneTimePad {
 
 	public String createKey(int l) {
 		StringBuilder result = new StringBuilder();
-		while (result.length() != l * CHARACTER_LENGTH_IN_BIT) {
-			char temp = (char) (generator.nextInt(ALPHABET_LENGTH) + ASCII_OFFSET);
-			if (convert.containsKey(temp)) {
-				result.append(temp);
-			} else {
-				throw new IllegalArgumentException("Something bad occurred in key creation");
-			}
-
+		for (int i = 0; i < l; i++) {
+			result.append(convert.get((char)(generator.nextInt(ALPHABET_LENGTH) + ASCII_OFFSET)));
 		}
 		return result.toString();
 	}
@@ -65,12 +59,8 @@ public class OneTimePad {
 		StringBuilder res = new StringBuilder();
 		int messageLength = msg.length() / CHARACTER_LENGTH_IN_BIT;
 		for (int i = 0; i < messageLength; i++) {
-			String temp = msg.substring(i * CHARACTER_LENGTH_IN_BIT, (i + 1) * CHARACTER_LENGTH_IN_BIT);
-			if (convert.containsValue(temp)) {
-				res.append(convert.inverse().get(temp));
-			} else {
-				throw new IllegalArgumentException("Message badly formatted");
-			}
+			res.append(convert.inverse()
+					.get(msg.substring(i * CHARACTER_LENGTH_IN_BIT, (i + 1) * CHARACTER_LENGTH_IN_BIT)));
 		}
 		return res.toString();
 	}
