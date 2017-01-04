@@ -21,7 +21,7 @@ public class VigenereTest {
 		when(parser.process("test")).thenReturn("test");
 		when(parser.process("testmessage")).thenReturn("testmessage");
 		vigenere = new Vigenere(parser, "test");
-		vigenere.code("testmessage");
+		vigenere.coding("testmessage");
 		assertEquals("testtesttest", vigenere.getKey());
 	}
 
@@ -30,7 +30,7 @@ public class VigenereTest {
 		when(parser.process("t<e!s{t")).thenReturn("test");
 		when(parser.process("testmessage")).thenReturn("testmessage");
 		vigenere = new Vigenere(parser, "t<e!s{t");
-		vigenere.code("testmessage");
+		vigenere.coding("testmessage");
 		assertEquals("testtesttest", vigenere.getKey());
 	}
 
@@ -39,7 +39,7 @@ public class VigenereTest {
 		when(parser.process("tESt")).thenReturn("test");
 		when(parser.process("testmessage")).thenReturn("testmessage");
 		vigenere = new Vigenere(parser, "tESt");
-		vigenere.code("testmessage");
+		vigenere.coding("testmessage");
 		assertEquals("testtesttest", vigenere.getKey());
 	}
 
@@ -48,7 +48,7 @@ public class VigenereTest {
 		when(parser.process("")).thenReturn("");
 		when(parser.process("testmessage")).thenReturn("testmessage");
 		vigenere = new Vigenere(parser, "");
-		vigenere.code("testmessage");
+		vigenere.coding("testmessage");
 	}
 
 	@Test
@@ -56,7 +56,7 @@ public class VigenereTest {
 		when(parser.process("test")).thenReturn("test");
 		when(parser.process("testmessage")).thenReturn("testmessage");
 		vigenere = new Vigenere(parser, "test");
-		assertEquals("mikmfikltkw", vigenere.code("testmessage"));
+		assertEquals("mikmfikltkw", vigenere.coding("testmessage"));
 	}
 
 	@Test
@@ -64,7 +64,7 @@ public class VigenereTest {
 		when(parser.process("test")).thenReturn("test");
 		when(parser.process("")).thenReturn("");
 		vigenere = new Vigenere(parser, "test");
-		assertEquals("", vigenere.code(""));
+		assertEquals("", vigenere.coding(""));
 	}
 
 	@Test
@@ -72,7 +72,7 @@ public class VigenereTest {
 		when(parser.process("test")).thenReturn("test");
 		when(parser.process("mikmfikltkw")).thenReturn("mikmfikltkw");
 		vigenere = new Vigenere(parser, "test");
-		assertEquals("testmessage", vigenere.decode("mikmfikltkw"));
+		assertEquals("testmessage", vigenere.decoding("mikmfikltkw"));
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class VigenereTest {
 		when(parser.process("test")).thenReturn("test");
 		when(parser.process("")).thenReturn("");
 		vigenere = new Vigenere(parser, "test");
-		assertEquals("", vigenere.decode(""));
+		assertEquals("", vigenere.decoding(""));
 	}
 
 }

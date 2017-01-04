@@ -23,25 +23,25 @@ public class SubstitutionTest {
 	@Test
 	public void testCoding() {
 		when(parser.process("test")).thenReturn("test");
-		assertEquals("ztlz", sub.code("test"));
+		assertEquals("ztlz", sub.coding("test"));
 	}
 
 	@Test
 	public void testCodingEmptyString() {
 		when(parser.process("")).thenReturn("");
-		assertEquals("", sub.code(""));
+		assertEquals("", sub.coding(""));
 	}
 
 	@Test
 	public void testDecoding() {
 		when(parser.process("ztlz")).thenReturn("ztlz");
-		assertEquals("test", sub.decode("ztlz"));
+		assertEquals("test", sub.decoding("ztlz"));
 	}
 
 	@Test
 	public void testDecodingEmptyString() {
 		when(parser.process("")).thenReturn("");
-		assertEquals("", sub.decode(""));
+		assertEquals("", sub.decoding(""));
 	}
 
 	@Test(expected = IllegalArgumentException.class)

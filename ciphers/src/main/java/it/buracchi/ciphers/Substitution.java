@@ -24,7 +24,7 @@ public class Substitution {
 		}
 	}
 
-	public String code(String msg) {
+	public String coding(String msg) {
 		String message = im.process(msg);
 		for (int i = 0; i < message.length(); i++) {
 			res.append(convertingTable.get(message.charAt(i)));
@@ -32,7 +32,7 @@ public class Substitution {
 		return res.toString();
 	}
 
-	public String decode(String msg) {
+	public String decoding(String msg) {
 		String message = im.process(msg);
 		for (int i = 0; i < message.length(); i++) {
 			res.append(convertingTable.inverse().get(message.charAt(i)));

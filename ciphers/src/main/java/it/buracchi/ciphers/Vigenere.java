@@ -16,7 +16,7 @@ public class Vigenere {
 		return key;
 	}
 
-	public String code(String msg) {
+	public String coding(String msg) {
 		String message = im.process(msg);
 		if (key.length() < message.length()) {
 			key = extendKey(key, message.length());
@@ -30,7 +30,7 @@ public class Vigenere {
 		return result.toString();
 	}
 
-	public String decode(String msg) {
+	public String decoding(String msg) {
 		String message = im.process(msg);
 		if (key.length() < message.length()) {
 			key = extendKey(key, message.length());

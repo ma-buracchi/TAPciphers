@@ -38,7 +38,7 @@ public class OneTimePadTest {
 		when(parser.checkKey("00001",5)).thenReturn("00001");
 		String key = "00001";
 		otp = new OneTimePad(parser);
-		assertEquals("00011", otp.code("c", key));
+		assertEquals("00011", otp.coding("c", key));
 	}
 	
 	@Test
@@ -47,7 +47,7 @@ public class OneTimePadTest {
 		when(parser.process("00001")).thenReturn("00001");
 		String key = "00001";
 		otp = new OneTimePad(parser);
-		assertEquals("c", otp.decode("00011", key));
+		assertEquals("c", otp.decoding("00011", key));
 	}
 
 }

@@ -25,7 +25,7 @@ public class OneTimePad {
 		return result.toString();
 	}
 
-	public String code(String msg, String k) {
+	public String coding(String msg, String k) {
 		String message = stringToBin(parser.process(msg));
 		String key = parser.checkKey(k, message.length());
 		StringBuilder res = new StringBuilder();
@@ -35,7 +35,7 @@ public class OneTimePad {
 		return res.toString();
 	}
 
-	public String decode(String msg, String k) {
+	public String decoding(String msg, String k) {
 		parser.checkKey(k, msg.length());
 		String key = k;
 		StringBuilder res = new StringBuilder();
