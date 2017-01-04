@@ -9,7 +9,6 @@ public final class Constants {
 	public static final int ASCII_Z = 122;
 	public static final int ASCII_0 = 48;
 	public static final int ASCII_1 = 49;
-	public static final int ALPHABET_CAP = 27;
 	public static final int CHARACTER_LENGTH_IN_BIT = 5;
 	
 	private Constants() {
