@@ -8,11 +8,11 @@ public class Substitution {
 
 	private BiMap<Character, Character> convertingTable;
 	private StringBuilder res;
-	private Parser im;
+	private Parser parser;
 
-	public Substitution(Parser parser, String newAlphabet) {
-		im = parser;
-		setupConvertingTable(im.checkAlphabet(newAlphabet));
+	public Substitution(Parser p, String newAlphabet) {
+		this.parser = p;
+		setupConvertingTable(parser.checkAlphabet(newAlphabet));
 		res = new StringBuilder();
 	}
 
@@ -25,7 +25,7 @@ public class Substitution {
 	}
 
 	public String coding(String msg) {
-		String message = im.process(msg);
+		String message = parser.process(msg);
 		for (int i = 0; i < message.length(); i++) {
 			res.append(convertingTable.get(message.charAt(i)));
 		}
@@ -33,7 +33,7 @@ public class Substitution {
 	}
 
 	public String decoding(String msg) {
-		String message = im.process(msg);
+		String message = parser.process(msg);
 		for (int i = 0; i < message.length(); i++) {
 			res.append(convertingTable.inverse().get(message.charAt(i)));
 		}

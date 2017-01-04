@@ -4,14 +4,14 @@ import static it.buracchi.ciphers.Constants.*;
 
 public class Shift {
 
-	private Parser im;
+	private Parser parser;
 
-	public Shift(Parser parser) {
-		this.im = parser;
+	public Shift(Parser p) {
+		this.parser = p;
 	}
 
 	public String coding(String msg, int shiftPosition) {
-		String message = im.process(msg);
+		String message = parser.process(msg);
 		StringBuilder result = new StringBuilder();
 		for (Character c : message.toCharArray()) {
 			result.append((char) (((c - ASCII_OFFSET + shiftPosition) % ALPHABET_LENGTH) + ASCII_OFFSET));
@@ -20,7 +20,7 @@ public class Shift {
 	}
 
 	public String decoding(String msg, int shiftPosition) {
-		String message = im.process(msg);
+		String message = parser.process(msg);
 		StringBuilder result = new StringBuilder();
 		for (Character c : message.toCharArray()) {
 			result.append(

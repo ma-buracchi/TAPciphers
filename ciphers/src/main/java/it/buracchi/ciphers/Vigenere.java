@@ -4,12 +4,12 @@ import static it.buracchi.ciphers.Constants.*;
 
 public class Vigenere {
 
-	private Parser im;
+	private Parser parser;
 	private String key;
 
-	public Vigenere(Parser parser, String key) {
-		im = parser;
-		this.key = im.process(key);
+	public Vigenere(Parser p, String key) {
+		this.parser = p;
+		this.key = parser.process(key);
 	}
 
 	public String getKey() {
@@ -17,7 +17,7 @@ public class Vigenere {
 	}
 
 	public String coding(String msg) {
-		String message = im.process(msg);
+		String message = parser.process(msg);
 		if (key.length() < message.length()) {
 			key = extendKey(key, message.length());
 		}
@@ -31,7 +31,7 @@ public class Vigenere {
 	}
 
 	public String decoding(String msg) {
-		String message = im.process(msg);
+		String message = parser.process(msg);
 		if (key.length() < message.length()) {
 			key = extendKey(key, message.length());
 		}
