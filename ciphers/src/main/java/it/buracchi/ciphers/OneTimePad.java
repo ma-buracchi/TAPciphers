@@ -35,21 +35,10 @@ public class OneTimePad {
 	}
 
 	public String coding(String message, String k) {
-		String key = parser.checkKey(k, message.length());
+		parser.checkKey(k, message.length());
 		StringBuilder res = new StringBuilder();
 		for (int i = 0; i < message.length(); i++) {
-			res.append(Character.getNumericValue(message.charAt(i)) ^ Character.getNumericValue(key.charAt(i)));
-		}
-		return res.toString();
-	}
-
-	public String decoding(String msg, String key) {
-		parser.checkKey(key, msg.length());
-		StringBuilder res = new StringBuilder();
-		for (int i = 0; i < msg.length(); i++) {
-			int messageChar = Character.getNumericValue(msg.charAt(i));
-			int keyChar = Character.getNumericValue(key.charAt(i));
-			res.append(messageChar ^ keyChar);
+			res.append(Character.getNumericValue(message.charAt(i)) ^ Character.getNumericValue(k.charAt(i)));
 		}
 		return res.toString();
 	}
