@@ -9,6 +9,7 @@
 Implemented ciphers:
  - Shift cipher
  - Substitution cipher
-
-Working on:
  - Vigenere cipher
+ - Affine cipher
+ - OneTimePad cipher
+ 
