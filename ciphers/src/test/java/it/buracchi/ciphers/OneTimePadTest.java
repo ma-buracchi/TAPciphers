@@ -10,61 +10,76 @@ public class OneTimePadTest {
 
 	private OneTimePad otp;
 	private Parser parser;
-	public static final int CHARACTER_LENGTH_IN_BIT = 5;
+	private String string_a_BinaryRepresentation = "0100";
+	private String string_test_BinaryRepresentation = "1000001100100";
+	private String shortKey = "0001";
+	private String longKey = "0001011100101";
+	private String string_a_CodedWithShortKey = "0101";
+	private String string_test_CodedWithLongKey = "1001010000001";
 
 	@Before
 	public void setup() {
 		parser = mock(Parser.class);
+		when(parser.process("a")).thenReturn("a");
+		when(parser.process("test")).thenReturn("test");
+		when(parser.process(string_a_BinaryRepresentation)).thenReturn(string_a_BinaryRepresentation);
+		when(parser.process(string_test_BinaryRepresentation)).thenReturn(string_test_BinaryRepresentation);
+		when(parser.process(shortKey)).thenReturn(shortKey);
+		when(parser.checkKey(shortKey, 4)).thenReturn(shortKey);
+		when(parser.process(longKey)).thenReturn(longKey);
+		when(parser.checkKey(longKey, 13)).thenReturn(longKey);
+		when(parser.process(string_a_CodedWithShortKey)).thenReturn(string_a_CodedWithShortKey);
+		otp = new OneTimePad(parser);
 	}
 
 	@Test
-	public void testKeyCreation() {
-		otp = new OneTimePad(parser);
-		assertNotNull(otp.createKey("test".length()));
+	public void testCreatedKeyOneCharachterLength() {
+		assertEquals(string_a_BinaryRepresentation.length(), otp.createKey("a").length());
 	}
 
 	@Test
-	public void testCreatedKeyLength() {
-		otp = new OneTimePad(parser);
-		assertEquals("test".length(), otp.createKey("test".length()).length() / CHARACTER_LENGTH_IN_BIT);
+	public void testCreatedLongerThanKeyOneCharachterLength() {
+		assertEquals(string_test_BinaryRepresentation.length(), otp.createKey("test").length());
+	}
+
+	@Test
+	public void testFromStringToBinary() {
+		assertEquals(string_a_BinaryRepresentation, otp.fromStringToBinary("a"));
+	}
+
+	@Test
+	public void testFromStringToBinaryLongerString() {
+		assertEquals(string_test_BinaryRepresentation, otp.fromStringToBinary("test"));
+	}
+
+	@Test
+	public void testFromBinaryToString() {
+		assertEquals("a", otp.fromBinaryToString(string_a_BinaryRepresentation));
+	}
+
+	@Test
+	public void testFromBinaryToStringLongerString() {
+		assertEquals("test", otp.fromBinaryToString(string_test_BinaryRepresentation));
 	}
 
 	@Test
 	public void testCoding() {
-		when(parser.process("c")).thenReturn("c");
-		when(parser.process("00001")).thenReturn("00001");
-		when(parser.checkKey("00001",5)).thenReturn("00001");
-		String key = "00001";
-		otp = new OneTimePad(parser);
-		assertEquals("00011", otp.coding("c", key));
+		assertEquals(string_a_CodedWithShortKey, otp.coding(string_a_BinaryRepresentation, shortKey));
 	}
-	
+
 	@Test
-	public void testLongCoding() {
-		when(parser.process("cg")).thenReturn("cg");
-		when(parser.process("0000100110")).thenReturn("0000100110");
-		when(parser.checkKey("0000100110",10)).thenReturn("0000100110");
-		String key = "0000100110";
-		otp = new OneTimePad(parser);
-		assertEquals("0001100000", otp.coding("cg", key));
+	public void testCodingLongerString() {
+		assertEquals(string_test_CodedWithLongKey, otp.coding(string_test_BinaryRepresentation, longKey));
 	}
-	
+
 	@Test
 	public void testDecoding() {
-		when(parser.process("00011")).thenReturn("00011");
-		when(parser.process("00001")).thenReturn("00001");
-		String key = "00001";
-		otp = new OneTimePad(parser);
-		assertEquals("c", otp.decoding("00011", key));
+		assertEquals(string_a_BinaryRepresentation, otp.coding(string_a_CodedWithShortKey, shortKey));
 	}
 	
 	@Test
-	public void testLongDecoding() {
-		when(parser.process("0001100000")).thenReturn("0001100000");
-		when(parser.process("0000100110")).thenReturn("0000100110");
-		String key = "0000100110";
-		otp = new OneTimePad(parser);
-		assertEquals("cg", otp.decoding("0001100000", key));
+	public void testDecodingLongerString() {
+		assertEquals(string_test_BinaryRepresentation, otp.coding(string_test_CodedWithLongKey, longKey));
 	}
 
 }

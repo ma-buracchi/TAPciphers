@@ -17,34 +17,41 @@ public class OneTimePad {
 		this.generator = new SecureRandom();
 	}
 
-	public String createKey(int l) {
-		StringBuilder result = new StringBuilder();
-		for (int i = 0; i < l; i++) {
-			result.append(convert.get((char)(generator.nextInt(ALPHABET_LENGTH) + ASCII_OFFSET)));
+	public String createKey(String msg) {
+		String message = stringToBin(parser.process(msg));
+		StringBuilder key = new StringBuilder();
+		while (key.length() < message.length()) {
+			key.append(generator.nextInt(BIT_RANGE));
 		}
-		return result.toString();
+		return key.toString();
+	}
+	
+	public String fromStringToBinary(String msg){
+		return stringToBin(parser.process(msg));
+	}
+	
+	public String fromBinaryToString(String message){
+		return binToString(message);
 	}
 
-	public String coding(String msg, String k) {
-		String message = stringToBin(parser.process(msg));
+	public String coding(String message, String k) {
 		String key = parser.checkKey(k, message.length());
 		StringBuilder res = new StringBuilder();
 		for (int i = 0; i < message.length(); i++) {
-			res.append((int) message.charAt(i) ^ (int) key.charAt(i));
+			res.append(Character.getNumericValue(message.charAt(i)) ^ Character.getNumericValue(key.charAt(i)));
 		}
 		return res.toString();
 	}
 
-	public String decoding(String msg, String k) {
-		parser.checkKey(k, msg.length());
-		String key = k;
+	public String decoding(String msg, String key) {
+		parser.checkKey(key, msg.length());
 		StringBuilder res = new StringBuilder();
 		for (int i = 0; i < msg.length(); i++) {
 			int messageChar = Character.getNumericValue(msg.charAt(i));
 			int keyChar = Character.getNumericValue(key.charAt(i));
 			res.append(messageChar ^ keyChar);
 		}
-		return binToString(res.toString());
+		return res.toString();
 	}
 
 	private String stringToBin(String msg) {
@@ -57,42 +64,45 @@ public class OneTimePad {
 
 	private String binToString(String msg) {
 		StringBuilder res = new StringBuilder();
-		int messageLength = msg.length() / CHARACTER_LENGTH_IN_BIT;
-		for (int i = 0; i < messageLength; i++) {
-			res.append(convert.inverse()
-					.get(msg.substring(i * CHARACTER_LENGTH_IN_BIT, (i + 1) * CHARACTER_LENGTH_IN_BIT)));
+		StringBuilder substring = new StringBuilder();
+		for (char c : msg.toCharArray()) {
+			substring.append(c);
+			if(convert.containsValue(substring.toString())){
+				res.append(convert.inverse().get(substring.toString()));
+				substring.setLength(0);
+			} 
 		}
 		return res.toString();
 	}
 
 	private void initializeConvert() {
 		convert = HashBiMap.create();
-		convert.put('a', "00000");
-		convert.put('b', "00001");
-		convert.put('c', "00010");
-		convert.put('d', "00011");
-		convert.put('e', "00100");
-		convert.put('f', "00101");
-		convert.put('g', "00110");
-		convert.put('h', "00111");
-		convert.put('i', "01000");
-		convert.put('j', "01001");
-		convert.put('k', "01010");
+		convert.put('a', "0100");
+		convert.put('b', "011111");
+		convert.put('c', "11110");
+		convert.put('d', "01010");
+		convert.put('e', "000");
+		convert.put('f', "10110");
+		convert.put('g', "011100");
+		convert.put('h', "1101");
+		convert.put('i', "0010");
+		convert.put('j', "101111100");
+		convert.put('k', "1011110");
 		convert.put('l', "01011");
-		convert.put('m', "01100");
-		convert.put('n', "01101");
-		convert.put('o', "01110");
-		convert.put('p', "01111");
-		convert.put('q', "10000");
-		convert.put('r', "10001");
-		convert.put('s', "10010");
-		convert.put('t', "10011");
-		convert.put('u', "10100");
-		convert.put('v', "10101");
-		convert.put('w', "10110");
-		convert.put('x', "10111");
-		convert.put('y', "11000");
-		convert.put('z', "11001");
+		convert.put('m', "10100");
+		convert.put('n', "0011");
+		convert.put('o', "0110");
+		convert.put('p', "011110");
+		convert.put('q', "101111110");
+		convert.put('r', "1110");
+		convert.put('s', "1100");
+		convert.put('t', "100");
+		convert.put('u', "11111");
+		convert.put('v', "101110");
+		convert.put('w', "10101");
+		convert.put('x', "101111101");
+		convert.put('y', "011101");
+		convert.put('z', "101111111");
 	}
 
 }
