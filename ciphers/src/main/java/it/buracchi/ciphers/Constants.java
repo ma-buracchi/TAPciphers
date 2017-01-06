@@ -10,6 +10,7 @@ public final class Constants {
 	public static final int ASCII_0 = 48;
 	public static final int ASCII_1 = 49;
 	public static final int CHARACTER_LENGTH_IN_BIT = 5;
+	public static final int BIT_RANGE = 2;
 	
 	private Constants() {
 		throw new UnsupportedOperationException("Utility class");
