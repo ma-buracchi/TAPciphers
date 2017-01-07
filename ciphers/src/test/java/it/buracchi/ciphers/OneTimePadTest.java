@@ -34,12 +34,12 @@ public class OneTimePadTest {
 
 	@Test
 	public void testCreatedKeyOneCharachterLength() {
-		assertEquals(string_a_BinaryRepresentation.length(), otp.createKey("a").length());
+		assertEquals(string_a_BinaryRepresentation.length(), otp.createKey(string_a_BinaryRepresentation).length());
 	}
 
 	@Test
 	public void testCreatedLongerThanKeyOneCharachterLength() {
-		assertEquals(string_test_BinaryRepresentation.length(), otp.createKey("test").length());
+		assertEquals(string_test_BinaryRepresentation.length(), otp.createKey(string_test_BinaryRepresentation).length());
 	}
 
 	@Test
