@@ -1,6 +1,8 @@
 package it.buracchi.ciphers;
 
 import java.util.Locale;
+import java.util.regex.Pattern;
+
 import static it.buracchi.ciphers.Constants.*;
 
 public class InputManager implements Parser {
@@ -15,8 +17,8 @@ public class InputManager implements Parser {
 		if (alphabet.length() != ALPHABET_LENGTH) {
 			throw new IllegalArgumentException("New alphabet must be 26 characters long");
 		}
-		for (char c : alphabet.toCharArray()) {
-			if ((int) c < ASCII_A_LOWERCASE || (int) c > ASCII_Z) {
+		for (Character c : alphabet.toCharArray()) {
+			if (Pattern.matches("[^A-Za-z]", c.toString())) {
 				throw new IllegalArgumentException("Letters from A to z are the only available characters");
 			}
 		}
@@ -29,7 +31,7 @@ public class InputManager implements Parser {
 			throw new IllegalArgumentException("Key length and message length must be the same");
 		}
 		for (Character c : key.toCharArray()) {
-			if ((int) c != ASCII_0 && (int) c != ASCII_1) {
+			if (Pattern.matches("[^01]", c.toString())) {
 				throw new IllegalArgumentException("Key must be composed just by 0 or 1");
 			}
 		}
