@@ -44,7 +44,7 @@ public class Vigenere {
 		return result.toString();
 	}
 
-	private String extendKey(String key, int l) {
+	private static String extendKey(String key, int l) {
 		if (key.isEmpty()) {
 			throw new IllegalArgumentException("Key must be longer than 0");
 		}

@@ -20,7 +20,7 @@ public class Substitution {
 
 	private void setupConvertingTable(String newAlphabet) {
 		convertingTable = HashBiMap.create();
-		IntStream.range(0, 26).forEach(n -> {
+		IntStream.range(0, ALPHABET_LENGTH).forEach(n -> {
 			char a = (char) (n + ASCII_OFFSET);
 			convertingTable.put(a, newAlphabet.charAt(n));
 		});
