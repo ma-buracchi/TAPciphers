@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 public class Shift {
 
 	private Parser parser;
-	private Logger logger = LogManager.getLogger(Shift.class);
+	private static final Logger LOGGER = LogManager.getLogger(Shift.class);
 
 	public Shift(Parser p) {
 		this.parser = p;
@@ -17,25 +17,25 @@ public class Shift {
 	}
 
 	public String coding(String msg, int shiftPosition) {
-		logger.info("Richiesta di cifratura della stringa '" + msg + "' con a = " + shiftPosition);
+		LOGGER.info("Richiesta di cifratura della stringa '" + msg + "' con a = " + shiftPosition);
 		String message = parser.process(msg);
 		StringBuilder result = new StringBuilder();
 		for (Character c : message.toCharArray()) {
 			result.append((char) (((c - ASCII_OFFSET + shiftPosition) % ALPHABET_LENGTH) + ASCII_OFFSET));
 		}
-		logger.info("Il risultato della cifratura è -----> " + result.toString());
+		LOGGER.info("Il risultato della cifratura è -----> " + result.toString());
 		return result.toString();
 	}
 
 	public String decoding(String msg, int shiftPosition) {
-		logger.info("Richiesta di decifratura della stringa '" + msg + "' con a = " + shiftPosition);
+		LOGGER.info("Richiesta di decifratura della stringa '" + msg + "' con a = " + shiftPosition);
 		String message = parser.process(msg);
 		StringBuilder result = new StringBuilder();
 		for (Character c : message.toCharArray()) {
 			result.append(
 					(char) (((c - ASCII_OFFSET - shiftPosition + ALPHABET_LENGTH) % ALPHABET_LENGTH) + ASCII_OFFSET));
 		}
-		logger.info("Il risultato della decifratura è -----> " + result.toString());
+		LOGGER.info("Il risultato della decifratura è -----> " + result.toString());
 		return result.toString();
 	}
 
