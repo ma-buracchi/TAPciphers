@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 public class Shift {
 
 	private Parser parser;
-	private static final Logger logger = LogManager.getLogger(Shift.class);
+	private Logger logger = LogManager.getLogger(Shift.class);
 
 	public Shift(Parser p) {
 		this.parser = p;

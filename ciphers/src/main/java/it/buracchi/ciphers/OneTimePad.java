@@ -14,7 +14,7 @@ public class OneTimePad {
 	private Parser parser;
 	private SecureRandom generator;
 	private BiMap<Character, String> convert;
-	private static final Logger logger = LogManager.getLogger(OneTimePad.class);
+	private Logger logger = LogManager.getLogger(OneTimePad.class);
 
 	public OneTimePad(Parser p) {
 		initializeConvert();

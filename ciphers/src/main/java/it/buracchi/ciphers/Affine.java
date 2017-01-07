@@ -13,7 +13,7 @@ public class Affine {
 	private BiMap<Integer, Integer> invertingTable;
 	private static final int[] RELATIVELY_PRIME_TO_26 = { 1, 3, 5, 7, 11, 17, 25 };
 	private static final int[] INVERSE_MOD_26 = { 1, 9, 21, 15, 19, 23, 25 };
-	private static final Logger logger = LogManager.getLogger(Affine.class);
+	private Logger logger = LogManager.getLogger(Affine.class);
 
 	public Affine(Parser p) {
 		parser = p;
