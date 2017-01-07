@@ -13,7 +13,6 @@ public class InputManagerTest {
 	@Before
 	public void setup() {
 		im = new InputManager();
-		test = "";
 	}
 
 	@Test
