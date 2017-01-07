@@ -4,6 +4,8 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import static it.buracchi.ciphers.Constants.*;
 
+import java.util.stream.IntStream;
+
 public class Substitution {
 
 	private BiMap<Character, Character> convertingTable;
@@ -18,10 +20,10 @@ public class Substitution {
 
 	private void setupConvertingTable(String newAlphabet) {
 		convertingTable = HashBiMap.create();
-		for (int i = 0; i < newAlphabet.length(); i++) {
-			char a = (char) (i + ASCII_OFFSET);
-			convertingTable.put(a, newAlphabet.charAt(i));
-		}
+		IntStream.range(0, 26).forEach(n -> {
+			char a = (char) (n + ASCII_OFFSET);
+			convertingTable.put(a, newAlphabet.charAt(n));
+		});
 	}
 
 	public String coding(String msg) {
