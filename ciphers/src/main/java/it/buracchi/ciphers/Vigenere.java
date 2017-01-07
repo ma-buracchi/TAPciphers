@@ -2,10 +2,14 @@ package it.buracchi.ciphers;
 
 import static it.buracchi.ciphers.Constants.*;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 public class Vigenere {
 
 	private Parser parser;
 	private String key;
+	private static Logger logger = LogManager.getLogger(Vigenere.class);
 
 	public Vigenere(Parser p, String key) {
 		this.parser = p;
@@ -17,6 +21,7 @@ public class Vigenere {
 	}
 
 	public String coding(String msg) {
+		logger.info("Richiesta di cifratura della stringa '" + msg + "' ");
 		String message = parser.process(msg);
 		if (key.length() < message.length()) {
 			key = extendKey(key, message.length());
@@ -27,10 +32,12 @@ public class Vigenere {
 			int k = (int) (key.charAt(i)) - ASCII_OFFSET;
 			result.append((char) (((m + k) % ALPHABET_LENGTH) + ASCII_OFFSET));
 		}
+		logger.info("Il risultato della cifratura è -----> " + result.toString());
 		return result.toString();
 	}
 
 	public String decoding(String msg) {
+		logger.info("Richiesta di decifratura della stringa '" + msg + "' ");
 		String message = parser.process(msg);
 		if (key.length() < message.length()) {
 			key = extendKey(key, message.length());
@@ -41,10 +48,12 @@ public class Vigenere {
 			int k = (int) (key.charAt(i)) - ASCII_OFFSET;
 			result.append((char) (((m - k + ALPHABET_LENGTH) % ALPHABET_LENGTH) + ASCII_OFFSET));
 		}
+		logger.info("Il risultato della decifratura è -----> " + result.toString());
 		return result.toString();
 	}
 
 	private static String extendKey(String key, int l) {
+		logger.info("Estensione della chiave '" + key + "' per raggiungere la lunghezza desiderata");
 		if (key.isEmpty()) {
 			throw new IllegalArgumentException("Key must be longer than 0");
 		}
@@ -52,6 +61,7 @@ public class Vigenere {
 		while (k.length() < l) {
 			k.append(key);
 		}
+		logger.info("La chiave estesa è -----> " + k.toString());
 		return k.toString();
 	}
 
