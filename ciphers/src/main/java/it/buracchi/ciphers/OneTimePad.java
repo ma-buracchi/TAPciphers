@@ -1,6 +1,10 @@
 package it.buracchi.ciphers;
 
 import java.security.SecureRandom;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import static it.buracchi.ciphers.Constants.*;
@@ -10,6 +14,7 @@ public class OneTimePad {
 	private Parser parser;
 	private SecureRandom generator;
 	private BiMap<Character, String> convert;
+	private static final Logger logger = LogManager.getLogger(OneTimePad.class);
 
 	public OneTimePad(Parser p) {
 		initializeConvert();
@@ -18,28 +23,37 @@ public class OneTimePad {
 	}
 
 	public String createKey(String msg) {
-		String message = stringToBin(parser.process(msg));
+		logger.info("Richiesta di creazione di una chiave per permettere la cifratura del messaggio " + msg);
 		StringBuilder key = new StringBuilder();
-		while (key.length() < message.length()) {
+		while (key.length() < msg.length()) {
 			key.append(generator.nextInt(BIT_RANGE));
 		}
+		logger.info("La chiave richiesta è -----> " + key.toString());
 		return key.toString();
 	}
 	
 	public String fromStringToBinary(String msg){
-		return stringToBin(parser.process(msg));
+		logger.info("Richiesta di conversione della stringa " + msg + " in una stringa binaria");
+		String res = stringToBin(parser.process(msg));
+		logger.info("La stringa binaria risultante è -----> " + res);
+		return res;
 	}
 	
 	public String fromBinaryToString(String message){
-		return binToString(message);
+		logger.info("Richiesta di conversione della stringa binaria " + message + " in una stringa alfabetica");
+		String res = binToString(message);
+		logger.info("La stringa alfabetica risultante è -----> " + res);
+		return res;
 	}
 
 	public String coding(String message, String k) {
+		logger.info("Richiesta di cifratura del messaggio " + message + " utilizzando la chiave " + k);
 		parser.checkKey(k, message.length());
 		StringBuilder res = new StringBuilder();
 		for (int i = 0; i < message.length(); i++) {
 			res.append(Character.getNumericValue(message.charAt(i)) ^ Character.getNumericValue(k.charAt(i)));
 		}
+		logger.info("Il risultato della cifratura è -----> " + res.toString());
 		return res.toString();
 	}
 
