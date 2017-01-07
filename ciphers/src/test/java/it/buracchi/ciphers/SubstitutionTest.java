@@ -22,6 +22,12 @@ public class SubstitutionTest {
 
 	@Test
 	public void testCoding() {
+		when(parser.process("a")).thenReturn("a");
+		assertEquals("q", sub.coding("a"));
+	}
+	
+	@Test
+	public void testCodingLongerString() {
 		when(parser.process("test")).thenReturn("test");
 		assertEquals("ztlz", sub.coding("test"));
 	}
@@ -34,6 +40,12 @@ public class SubstitutionTest {
 
 	@Test
 	public void testDecoding() {
+		when(parser.process("q")).thenReturn("q");
+		assertEquals("a", sub.decoding("q"));
+	}
+	
+	@Test
+	public void testDecodingLongerString() {
 		when(parser.process("ztlz")).thenReturn("ztlz");
 		assertEquals("test", sub.decoding("ztlz"));
 	}
