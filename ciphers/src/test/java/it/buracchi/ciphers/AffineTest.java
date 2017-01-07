@@ -24,12 +24,24 @@ public class AffineTest {
 
 	@Test
 	public void testCoding() {
+		when(parser.process("a")).thenReturn("a");
+		assertEquals("f", affine.coding("a", 3, 5));
+	}
+	
+	@Test
+	public void testCodingLongerString() {
 		when(parser.process("test")).thenReturn("test");
 		assertEquals("krhk", affine.coding("test", 3, 5));
 	}
 	
 	@Test
 	public void testDecoding() {
+		when(parser.process("f")).thenReturn("f");
+		assertEquals("a", affine.decoding("f", 3, 5));
+	}
+	
+	@Test
+	public void testDecodingLongerString() {
 		when(parser.process("krhk")).thenReturn("krhk");
 		assertEquals("test", affine.decoding("krhk", 3, 5));
 	}
