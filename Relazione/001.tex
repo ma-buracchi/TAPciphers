@@ -11,6 +11,12 @@
 		\end{itemize}
 		
 	\section{Struttura progetto}
-		Il progetto consta di otto classi. Cinque rappresentano i cinque cifrari, una contiene solamente delle costanti utilizzate più o meno da tutte e cinque le classi principali, una è la classe che implementa il parser che si occupa di gestire i messaggi e le varie stringhe utilizzate dal programma e infine un'interfaccia per le possibili implementazioni di parser differenti.
+		Le cinque classi principali che implementano i cinque cifrari sono \emph{Shift, Vigenere, Substitution, Affine} e \emph{OneTimePad}.
 		
-		Tutte le classi sono state create con la metodologia test-driven e testate attraverso unit-testing.
+		L'interfaccia \emph{Parser} definisce i metodi che deve implementare la classe che si occuperà di gestire le stringhe rappresentanti i messaggi, le chiavi e quant'altro all'interno del progetto.
+		
+		La classe \emph{InputManager} fornisce un'implementazione di tale interfaccia mentre la classe \emph{Constants} contiene delle variabili condivise.
+		
+		Infine la classe \emph{Main} contiene un piccolo main utile a spiegare le varie funzionalità del programma.
+		
+		Per quanto riguarda i test, sono presenti nove classi di unit-testing (una per ogni suddetta classe) e cinque classi di integration-testing per controllare l'effettivo funzionamento dell'interazione tra ognuna delle cinque classi che implementano i cifrari e il parser \emph{InputManager}.
