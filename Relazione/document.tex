@@ -1,0 +1,136 @@
+%--------------------------------------------------------------
+% - template for the main file of Informatica@Unifi Thesis 
+% - based on Classic Thesis Style Copyright (C) 2008 
+%   Andr\'e Miede http://www.miede.de   
+%--------------------------------------------------------------
+% Avoid warning
+\RequirePackage{silence}
+\WarningFilter{scrbook}{Usage of package `titlesec'}
+\WarningFilter{scrbook}{Activating an ugly workaround}
+\WarningFilter{scrbook}{\float@addtolist}
+\WarningFilter{titlesec}{Non standard sectioning command detected}
+%--------------------------------------------------------------
+\documentclass[final,oneside,titlepage,fleqn,
+	headinclude,12pt,a4paper,BCOR5mm,footinclude]{scrbook}
+%--------------------------------------------------------------
+\newcommand{\myItalianTitle}{CIPHERS: IMPLEMENTAZIONE DI ALCUNI CIFRARI STORICI\xspace} 
+\newcommand{\myDegree}{Corso di Laurea Magistrale in Informatica\xspace}
+\newcommand{\myName}{Marco Buracchi\xspace}
+\newcommand{\myProf}{Prof. Lorenzo Bettini\xspace}
+\newcommand{\myFaculty}{
+	Scuola di Scienze Matematiche, Fisiche e Naturali\xspace}
+\newcommand{\myUni}{\protect{
+	Universit\`A degli Studi di Firenze}\xspace}
+\newcommand{\myLocation}{Firenze\xspace}
+\newcommand{\myTime}{Anno Accademico 2016-2017\xspace} 
+%--------------------------------------------------------------
+\usepackage{dia-classicthesis-ldpkg}
+%--------------------------------------------------------------
+% Options for classicthesis.sty:
+% tocaligned eulerchapternumbers drafting linedheaders 
+% listsseparated subfig nochapters beramono eulermath parts 
+% minionpro pdfspacing
+\usepackage[eulerchapternumbers,linedheaders,subfig,beramono,eulermath,parts]{classicthesis}
+%--------------------------------------------------------------
+\newcommand{\svar}{\textbf{S}}
+\newcommand{\ssvar}{\textbf{SS}}
+\newcommand{\sssvar}{\textbf{SSS}}
+\newcommand{\ssssvar}{\textbf{SSSS}}
+\newcommand{\sssssvar}{\textbf{SSSSS}}
+\newcommand{\ssssssvar}{\textbf{SSSSSS}}
+\newcommand{\sssssssvar}{\textbf{SSSSSSS}}
+\newcommand{\kvar}{\textbf{K}}
+\newcommand{\ivar}{\textbf{I}}
+\newcommand{\approssima}{\approx_{b}}
+\renewcommand{\epsilon}{\varepsilon}	%convenzione matematica
+\renewcommand{\theta}{\vartheta}		%convenzione matematica
+\renewcommand{\rho}{\varrho}			%convenzione matematica
+\renewcommand{\phi}{\varphi}			%convenzione matematica
+%--------------------------------------------------------------
+\usepackage[italian]{babel}	%sillabazione italiana
+\usepackage[utf8]{inputenc}	%accenti direttamente da tastiera
+\usepackage[T1]{fontenc}	%stampare accenti
+\usepackage[fleqn]{amsmath}	%pacchetto matematico
+\usepackage{amssymb}		%simboli matematici
+\usepackage{ellipsis}		%spazio dopo punteggiatura			
+\usepackage{subfig}			%opzioni per immagini
+\usepackage{caption}		%opzioni per didascalie immagini
+\usepackage{appendix}		%creare appendice
+\usepackage{siunitx}		%unit� di misura sistema internazionale
+\usepackage{stmaryrd}		%altri simboli matematici
+\usepackage{tikz}			%disegnare
+\usepackage[object=vectorian]{pgfornament}%ornamenti pagine
+\usepackage{listings}		%inserire codice
+\usepackage{mathpartir}		%regole di inferenza
+%--------------------------------------------------------------
+\newlength{\abcd} % for ab..z string length calculation
+% how all the floats will be aligned
+\newcommand{\myfloatalign}{\centering} 
+\setlength{\extrarowheight}{3pt} % increase table row height
+\captionsetup{format=hang,font=small}
+%--------------------------------------------------------------
+% Layout setting
+%--------------------------------------------------------------
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	ignoremp,
+	bindingoffset = 1cm, 
+	textwidth     = 13.5cm,
+	textheight    = 21.5cm,
+	lmargin       = 3.5cm, % left margin
+	tmargin       = 4cm    % top margin 
+}
+
+\lstset{
+  	frame=tb,
+	language=Matlab,
+  	aboveskip=3mm,
+  	belowskip=3mm,
+  	showstringspaces=false,
+  	columns=flexible,
+  	basicstyle={\small\ttfamily},
+  	numbers=none,
+  	breaklines=true,
+  	breakatwhitespace=true,
+  	tabsize=3
+}
+
+\newcommand{\sectionline}{
+	\begin{center}
+		\resizebox{0.5\linewidth}{1ex}{
+			\begin{tikzpicture}
+				\node  (C) at (0,0) {};
+				\node (D) at (9,0) {};
+				\path (C) to [ornament=83] (D);
+			\end{tikzpicture}
+		}
+	\end{center}
+}
+%--------------------------------------------------------------
+\begin{document}
+\frenchspacing
+\raggedbottom
+%\pagenumbering{roman}
+\pagestyle{plain}
+%--------------------------------------------------------------
+% Frontmatter
+%--------------------------------------------------------------
+\include{titlePage}
+\tableofcontents
+\include{001}
+\include{002}
+\include{003}
+\include{004}
+\begin{appendices}
+	\include{appendiceA}
+\end{appendices}
+\pagestyle{scrheadings}
+%--------------------------------------------------------------
+% Mainmatter
+%--------------------------------------------------------------
+
+		
+%--------------------------------------------------------------
+\end{document}
+%--------------------------------------------------------------

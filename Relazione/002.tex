@@ -1,0 +1,13 @@
+\chapter{Testing}
+	\section{Unit testing}
+		Andiamo a vedere nel dettaglio i test con i quali sono state implementate le varie classi.
+		\subsection{Shift cipher}
+			Lo shift cipher è il cifrario più semplice. L'unica cosa che fa è spostare la lettere da cifrare di un certo numero di posizioni avanti nell'alfabeto. Tale numero di posizioni è la chiave del cifrario. Per decodificare il messaggio basterà semplicemente tornare indietro del numero di posizioni indicato dalla chiave. Se per esempio il messaggio è "ciao" e la chiave è 3, il messaggio cifrato sarà "fldr".
+			
+			Considerando di ottenere solamente stringhe di caratteri cifrabili dal parser (nell'ultima sezione di questo capitolo verrà spiegato il suo utilizzo tramite mocking), le uniche due funzionalità richieste a questo cifrario sono quelle di cifratura e decifratura. Tali funzionalità sono state testate nel caso di uno spostamento di zero posizioni (non ottenendo una cifratura), di una posizione, di ventisei posizioni, di ventisette posizioni e di un numero negativo di posizioni(-1). Come caso limite è stata testata anche la cifratura della stringa vuota (il numero di posizioni è ininfluente dato che la cifratura terminerà immediatamente).
+			
+			Testando anche la decodifica di tutti questi casi sono state coperte le possibili modalità di cifratura/decifratura di una stringa. 
+		\subsection{Mocking}
+	\section{Mutation testing}
+	\section{Integration testing}
+	\section{Test sull'interfaccia}
