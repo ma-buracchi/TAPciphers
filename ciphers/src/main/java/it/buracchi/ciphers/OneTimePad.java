@@ -2,7 +2,6 @@ package it.buracchi.ciphers;
 
 import java.security.SecureRandom;
 
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -21,7 +20,6 @@ public class OneTimePad {
 		initializeConvert();
 		this.parser = p;
 		this.generator = new SecureRandom();
-		BasicConfigurator.configure();
 	}
 
 	public String createKey(String msg) {
@@ -33,15 +31,15 @@ public class OneTimePad {
 		LOGGER.info("La chiave richiesta è -----> " + key.toString());
 		return key.toString();
 	}
-	
-	public String fromStringToBinary(String msg){
+
+	public String fromStringToBinary(String msg) {
 		LOGGER.info("Richiesta di conversione della stringa " + msg + " in una stringa binaria");
 		String res = stringToBin(parser.process(msg));
 		LOGGER.info("La stringa binaria risultante è -----> " + res);
 		return res;
 	}
-	
-	public String fromBinaryToString(String message){
+
+	public String fromBinaryToString(String message) {
 		LOGGER.info("Richiesta di conversione della stringa binaria " + message + " in una stringa alfabetica");
 		String res = binToString(message);
 		LOGGER.info("La stringa alfabetica risultante è -----> " + res);
@@ -72,10 +70,10 @@ public class OneTimePad {
 		StringBuilder substring = new StringBuilder();
 		for (char c : msg.toCharArray()) {
 			substring.append(c);
-			if(convert.containsValue(substring.toString())){
+			if (convert.containsValue(substring.toString())) {
 				res.append(convert.inverse().get(substring.toString()));
 				substring.setLength(0);
-			} 
+			}
 		}
 		return res.toString();
 	}

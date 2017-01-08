@@ -2,7 +2,6 @@ package it.buracchi.ciphers;
 
 import static it.buracchi.ciphers.Constants.*;
 
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -13,7 +12,6 @@ public class Shift {
 
 	public Shift(Parser p) {
 		this.parser = p;
-		BasicConfigurator.configure();
 	}
 
 	public String coding(String msg, int shiftPosition) {

@@ -2,7 +2,6 @@ package it.buracchi.ciphers;
 
 import static it.buracchi.ciphers.Constants.*;
 
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -15,7 +14,6 @@ public class Vigenere {
 	public Vigenere(Parser p, String key) {
 		this.parser = p;
 		this.key = parser.process(key);
-		BasicConfigurator.configure();
 	}
 
 	public String getKey() {

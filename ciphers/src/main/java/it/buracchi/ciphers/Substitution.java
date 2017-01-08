@@ -6,7 +6,6 @@ import static it.buracchi.ciphers.Constants.*;
 
 import java.util.stream.IntStream;
 
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -19,7 +18,6 @@ public class Substitution {
 	public Substitution(Parser p, String newAlphabet) {
 		this.parser = p;
 		setupConvertingTable(parser.checkAlphabet(newAlphabet));
-		BasicConfigurator.configure();
 	}
 
 	private void setupConvertingTable(String newAlphabet) {

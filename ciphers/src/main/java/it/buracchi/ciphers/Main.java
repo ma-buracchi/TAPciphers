@@ -1,14 +1,14 @@
 package it.buracchi.ciphers;
 
-import org.apache.log4j.Logger;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 public final class Main {
 
-	private static final Logger LOGGER = LogManager.getLogger(Main.class);
 	public static final int A = 3;
 	public static final int B = 5;
+	private static final Logger LOGGER = LogManager.getLogger(Main.class);
 	
 	private Main() {
 		throw new UnsupportedOperationException("Utility class");
@@ -80,7 +80,7 @@ public final class Main {
 		sub.coding("test");
 		LOGGER.info("Controprova");
 		sub.decoding("ztlz");
-		LOGGER.info("**************Substitution cipher**************");
+		LOGGER.info("**************Vigenere cipher**************");
 		LOGGER.info(
 				"Vigenere cipher ha bisogno di una parola chiave 'K' che verrà ripetuta fino al "
 				+ "raggiungimento della dimensione del messaggio da cifrare. Il messaggio cifrato sarà quindi "

@@ -4,7 +4,6 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import static it.buracchi.ciphers.Constants.*;
 
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -19,7 +18,6 @@ public class Affine {
 	public Affine(Parser p) {
 		parser = p;
 		setInverse();
-		BasicConfigurator.configure();
 	}
 
 	public String coding(String msg, int a, int b) {
