@@ -12,16 +12,25 @@
 			
 			Testando anche la decifratura di tutti questi casi sono state coperte le possibili modalità di cifratura/decifratura di una stringa.
 			
-		\subsection{Vigenere cipher}
-			Il \emph{cifrario di Vigenère} è una variante dello shift cipher che invece di utilizzare come chiave un numero fisso, utilizza una parola che viene ripetuta tante volte fino al raggiungimento della lunghezza del messaggio che si vuole cifrare. Ogni lettera verrà poi traslata del numero di posizioni corrispondenti alla posizione nell'alfabeto della corrispondente lettera della chiave.
+		\subsection{Affine cipher}
+			L'Affine cipher è una generalizzazione dello shift cipher. Questo cifrario ha come chiave due parametri \emph{a} e \emph{b} opportunamente scelti secondo principi di algebra modulare. La i-esima lettera P[i] del messaggio in chiaro verrà cifrata in (P[i] * \emph{a} + \emph{b}) modulo 26. Se viene scelto il parametro \emph{a} = 1 otteniamo in tutto e per tutto uno shift cipher.
 			
-			Se per esempio abbiamo un certo messaggio P da cifrare con una chiave K, allora come prima cosa verrà ripetuta K tante volte fino a che la sua lunghezza non raggiunge quella di P e poi ogni i-esima lettera del messaggio P[i] sarà cifrata in P[i]+K[i] modulo 26.
+			I comportamenti da testare sono la cifratura, la decifratura e la giusta scelta del  parametro \emph{a} che deve essere coprimo con 26.
+			
+			Questo ultimo comportamento viene testato dando in input 2 come coefficiente \emph{a} e aspettandosi una IllegalArgumentException.
+			
+			La cifratura e la decifratura vengono testate con stringhe di lunghezza zero, uno e quattro (quest'ultima scelta è dovuta esclusivamente al fatto di voler cifrare una stringa con un senso compiuto che in questo caso è \emph{test})
+			
+		\subsection{Vigenere cipher}
+			Il \emph{cifrario di Vigenère} è un'altra variante dello shift cipher che invece di utilizzare come chiave un numero fisso, utilizza una parola che viene ripetuta tante volte fino al raggiungimento della lunghezza del messaggio che si vuole cifrare. Ogni lettera verrà poi traslata del numero di posizioni corrispondenti alla posizione nell'alfabeto della corrispondente lettera della chiave.
+			
+			Se per esempio abbiamo un certo messaggio P da cifrare con una chiave K, allora come prima cosa verrà ripetuta K tante volte fino a che la sua lunghezza non raggiunge quella di P e poi ogni i-esima lettera P[i] del messaggio sarà cifrata in P[i]+K[i] modulo 26.
 			
 			Cifrare il messaggio \emph{testmessage} con la chiave \emph{test} comporterà tre ripetizioni della chiave (che quindi diventerà \emph{testtesttest}). Conseguentemente la prima lettera del messaggio (\emph{t}) verrà spostata di venti posizioni (verrà cifrata con la prima lettera della chiave che è \emph{t} ed è la ventesima lettera dell'alfabeto), la seconda di cinque e così via.
 			
 			I comportamenti da testare sono la cifratura, la decifratura e il prolungamento della chiave.
 			
-			Cifratura e decifratura sono testati con stringhe di lunghezza zero, uno e undici caratteri (quest'ultima scelta è dovuta esclusivamente al fatto di voler cifrare una stringa con un senso compiuto che in questo caso è \emph{testmessage}).
+			Cifratura e decifratura sono testati con stringhe di lunghezza zero, uno e undici caratteri (come sopra, quest'ultima scelta è dovuta esclusivamente al fatto di voler cifrare una stringa con un senso compiuto che in questo caso è \emph{testmessage}).
 			
 			L'estensione della chiave viene testata fornendo la stringa \emph{test} come chiave, facendo cifrare il messaggio \emph{testmessage} e verificando che sia stata trasformata in \emph{testtesttest}.
 			

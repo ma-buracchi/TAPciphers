@@ -22,3 +22,4 @@ ciphers/target/
 *.mtc1
 *.out
 *.synctex.gz
+document.pdf
