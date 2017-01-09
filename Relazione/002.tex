@@ -63,6 +63,10 @@
 			Come prima, i test riguardanti il controllo della permutazione di cifratura in realtà non sarebbero necessari in quanto già presenti nei test del parser (che è quello che si occupa di questo controllo) ma sono stati aggiunti per specificare meglio il comportamento che deve avere la classe in caso di inserimento di una permutazione scorretta (troppo corta, troppo lunga o con caratteri non alfabetici).
 			
 	\section{Mocking}
+		Per eliminare la dipendenza da altre classi concrete che potrebbero disturbare lo unit-testing, nelle cinque classi che implementano i cifrari, viene utilizzato un \emph{mock} dell'interfaccia parser.	Ognuna di queste cinque classi utilizza infatti un oggetto di questo tipo per effettuare vari controlli sulle stringhe fornite in input.
+		
+		Lo stubbing dei metodi usati da vari test-case viene effettuato direttamente nel metodo setup annotato come \emph{@Before} mentre quelli usati solamente da un singolo test-case vengono effettuati all'interno del relativo test-case.
+		
 	\section{Mutation testing}
 	\section{Integration testing}
 	\section{Test sull'interfaccia}

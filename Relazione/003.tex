@@ -1,5 +1,25 @@
 \chapter{Plug-in utilizzati}
 	\section{Maven}
+		Maven è stato utilizzato per gestire le varie dipendenze del progetto e la build automatica.
+		Le dipendenze necessarie sono: 
+		\begin{itemize}
+			\item \emph{JUnit}: framework per lo unit-testing
+			\item \emph{Guava}: libreria di GOOGLE che fornisce un hashmap bidirezionale
+			\item \emph{Mockito}: framework utlizzato sempre per lo unit-testing
+			\item \emph{Log4J}: framework per il logging 
+		\end{itemize}
+		
 	\section{Travis}
+		Travis viene utilizzato per la continuous integration. Il relativo file di configurazione è stato settato per utilizzare la jdk8 necessaria alla compilazione del progetto e per fornire il risultato della code coverage a coveralls.
+		
 	\section{Coveralls}
+		Coveralls riceve i dati della coverage direttamente da Travis.
+		
+	\section{Docker}
+		L'utilizzo principale di Docker è in realtà usare docker compose per gestire il server di SonarQube senza doverlo effettivamente scaricare. 
+		
 	\section{Sonarqube}
+		Sonarqube viene utilizzato tramite docker compose. E' stata scaricata l'ultima versione, attivando tutte le regole disponibili per Java ad esclusione delle seguenti:
+		\begin{itemize}
+			\item squid
+		\end{itemize}

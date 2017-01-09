@@ -32,36 +32,19 @@
 % minionpro pdfspacing
 \usepackage[eulerchapternumbers,linedheaders,subfig,beramono,eulermath,parts]{classicthesis}
 %--------------------------------------------------------------
-\newcommand{\svar}{\textbf{S}}
-\newcommand{\ssvar}{\textbf{SS}}
-\newcommand{\sssvar}{\textbf{SSS}}
-\newcommand{\ssssvar}{\textbf{SSSS}}
-\newcommand{\sssssvar}{\textbf{SSSSS}}
-\newcommand{\ssssssvar}{\textbf{SSSSSS}}
-\newcommand{\sssssssvar}{\textbf{SSSSSSS}}
-\newcommand{\kvar}{\textbf{K}}
-\newcommand{\ivar}{\textbf{I}}
-\newcommand{\approssima}{\approx_{b}}
-\renewcommand{\epsilon}{\varepsilon}	%convenzione matematica
-\renewcommand{\theta}{\vartheta}		%convenzione matematica
-\renewcommand{\rho}{\varrho}			%convenzione matematica
-\renewcommand{\phi}{\varphi}			%convenzione matematica
 %--------------------------------------------------------------
 \usepackage[italian]{babel}	%sillabazione italiana
 \usepackage[utf8]{inputenc}	%accenti direttamente da tastiera
 \usepackage[T1]{fontenc}	%stampare accenti
-\usepackage[fleqn]{amsmath}	%pacchetto matematico
-\usepackage{amssymb}		%simboli matematici
 \usepackage{ellipsis}		%spazio dopo punteggiatura			
 \usepackage{subfig}			%opzioni per immagini
 \usepackage{caption}		%opzioni per didascalie immagini
 \usepackage{appendix}		%creare appendice
-\usepackage{siunitx}		%unit� di misura sistema internazionale
-\usepackage{stmaryrd}		%altri simboli matematici
-\usepackage{tikz}			%disegnare
-\usepackage[object=vectorian]{pgfornament}%ornamenti pagine
 \usepackage{listings}		%inserire codice
-\usepackage{mathpartir}		%regole di inferenza
+\usepackage{color}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
 %--------------------------------------------------------------
 \newlength{\abcd} % for ab..z string length calculation
 % how all the floats will be aligned
@@ -83,17 +66,21 @@
 }
 
 \lstset{
-  	frame=tb,
-	language=Matlab,
-  	aboveskip=3mm,
-  	belowskip=3mm,
-  	showstringspaces=false,
-  	columns=flexible,
-  	basicstyle={\small\ttfamily},
-  	numbers=none,
-  	breaklines=true,
-  	breakatwhitespace=true,
-  	tabsize=3
+	basicstyle=\ttfamily,
+	columns=fullflexible,
+	showstringspaces=false,
+	commentstyle=\color{gray}\upshape
+}
+
+\lstdefinelanguage{XML}
+{
+	morestring=[b]",
+	morestring=[s]{>}{<},
+	morecomment=[s]{<?}{?>},
+	stringstyle=\color{black},
+	identifierstyle=\color{darkblue},
+	keywordstyle=\color{cyan},
+	morekeywords={xmlns,version,type}% list your attributes here
 }
 
 \newcommand{\sectionline}{
@@ -119,8 +106,8 @@
 \include{titlePage}
 \tableofcontents
 \include{001}
-\include{002}
 \include{003}
+\include{002}
 \include{004}
 \begin{appendices}
 	\include{appendiceA}
