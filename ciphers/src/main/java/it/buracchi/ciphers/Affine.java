@@ -19,6 +19,7 @@ public class Affine {
 	public Affine(Parser p) {
 		parser = p;
 		setInverse();
+		BasicConfigurator.resetConfiguration();
 		BasicConfigurator.configure();
 	}
 

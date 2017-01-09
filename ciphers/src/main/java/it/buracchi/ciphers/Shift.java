@@ -13,6 +13,7 @@ public class Shift {
 
 	public Shift(Parser p) {
 		this.parser = p;
+		BasicConfigurator.resetConfiguration();
 		BasicConfigurator.configure();
 	}
 

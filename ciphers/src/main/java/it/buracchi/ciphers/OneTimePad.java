@@ -21,6 +21,7 @@ public class OneTimePad {
 		initializeConvert();
 		this.parser = p;
 		this.generator = new SecureRandom();
+		BasicConfigurator.resetConfiguration();
 		BasicConfigurator.configure();
 	}
 

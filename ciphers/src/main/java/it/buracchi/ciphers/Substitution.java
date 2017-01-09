@@ -19,6 +19,7 @@ public class Substitution {
 	public Substitution(Parser p, String newAlphabet) {
 		this.parser = p;
 		setupConvertingTable(parser.checkAlphabet(newAlphabet));
+		BasicConfigurator.resetConfiguration();
 		BasicConfigurator.configure();
 	}
 

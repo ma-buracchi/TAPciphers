@@ -15,6 +15,7 @@ public class Vigenere {
 	public Vigenere(Parser p, String key) {
 		this.parser = p;
 		this.key = parser.process(key);
+		BasicConfigurator.resetConfiguration();
 		BasicConfigurator.configure();
 	}
 
