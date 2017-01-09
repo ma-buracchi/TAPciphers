@@ -35,6 +35,12 @@ public class AffineTest {
 	}
 	
 	@Test
+	public void testCodingEmptyString() {
+		when(parser.process("")).thenReturn("");
+		assertEquals("", affine.coding("", 3, 5));
+	}
+	
+	@Test
 	public void testDecoding() {
 		when(parser.process("f")).thenReturn("f");
 		assertEquals("a", affine.decoding("f", 3, 5));
@@ -44,6 +50,12 @@ public class AffineTest {
 	public void testDecodingLongerString() {
 		when(parser.process("krhk")).thenReturn("krhk");
 		assertEquals("test", affine.decoding("krhk", 3, 5));
+	}
+	
+	@Test
+	public void testDecodingEmptyString() {
+		when(parser.process("")).thenReturn("");
+		assertEquals("", affine.decoding("", 3, 5));
 	}
 
 }
