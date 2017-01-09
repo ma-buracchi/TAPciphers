@@ -19,7 +19,7 @@
 			
 			Questo ultimo comportamento viene testato dando in input 2 come coefficiente \emph{a} e aspettandosi una IllegalArgumentException.
 			
-			La cifratura e la decifratura vengono testate con stringhe di lunghezza zero, uno e quattro (quest'ultima scelta è dovuta esclusivamente al fatto di voler cifrare una stringa con un senso compiuto che in questo caso è \emph{test})
+			La cifratura e la decifratura vengono testate con stringhe di lunghezza variabile per cercare di coprire il maggior numero di combinazioni possibili.
 			
 		\subsection{Vigenere cipher}
 			Il \emph{cifrario di Vigenère} è un'altra variante dello shift cipher che invece di utilizzare come chiave un numero fisso, utilizza una parola che viene ripetuta tante volte fino al raggiungimento della lunghezza del messaggio che si vuole cifrare. Ogni lettera verrà poi traslata del numero di posizioni corrispondenti alla posizione nell'alfabeto della corrispondente lettera della chiave.
@@ -30,11 +30,28 @@
 			
 			I comportamenti da testare sono la cifratura, la decifratura e il prolungamento della chiave.
 			
-			Cifratura e decifratura sono testati con stringhe di lunghezza zero, uno e undici caratteri (come sopra, quest'ultima scelta è dovuta esclusivamente al fatto di voler cifrare una stringa con un senso compiuto che in questo caso è \emph{testmessage}).
+			Cifratura e decifratura sono testati con stringhe di lunghezze diverse, sempre per coprire il maggior numero di combinazioni possibili.
 			
 			L'estensione della chiave viene testata fornendo la stringa \emph{test} come chiave, facendo cifrare il messaggio \emph{testmessage} e verificando che sia stata trasformata in \emph{testtesttest}.
 			
 			Sono presenti anche tre test che controllano l'inserimento di una chiave illegale. Questi test sono stati inseriti per chiarire meglio il comportamento di questa classe ma sarebbero inutili in quanto questo controllo viene in realtà fatto dal parser.
+			
+		\subsection{OneTimePad cipher}
+			Il cifrario OneTimePad è una specializzazione del cifrario di Vigenère che richiede come chiave una stringa binaria della lunghezza almeno pari alla conversione in stringa binaria del messaggio da cifrare. Questo cifrario viene anche chiamato \emph{cifrario perfetto} ed è l'unico sistema crittografico la cui sicurezza sia comprovata da una dimostrazione matematica nel 1949 da \emph{Claude Shannon}.
+			
+			Questo cifrario è un po' più complesso dei precedenti in quanto prevede una conversione del messaggio da cifrare in una stringa binaria. Una volta convertita il messaggio cifrato si otterrà semplicemente operando uno XOR tra le due stringhe binarie.
+			
+			I comportamenti da testare sono quindi molteplici.
+			
+			Il primo comportamento testato è quello di creazione della chiave (che avviene con un generatore casuale). Questo comportamento viene testato confrontando la lunghezza della stringa data in input e la lunghezza della chiave restituita.
+			
+			Successivamente viene testata la capacità di convertire un messaggio nella relativa stringa binaria. Per questa conversione viene utilizzata la codifica di Huffmann dell'alfabeto inglese.
+			
+			Viene testata anche l'operazione inversa, cioè quella di riconvertire una stringa binaria ottenuta dalla codifica precedente in una stringa di testo. Questo permetterà di ottenere un messaggio decifrato leggibile.
+			
+			Come ultima cosa, vengono testate la cifratura e la decifratura.
+			
+			Tutti questi controlli, come per i casi precedenti, vengono ripetuti su stringhe di lunghezza differente per coprire ogni caso possibile.
 			
 		\subsection{Substitution cipher}
 			Anche il substitution cipher è un cifrario abbastanza semplice che utilizza come chiave di cifratura una permutazione dell'alfabeto. Se per esempio la permutazione utilizzata è \emph{qwertyuiopasdfghjklzxcvbnm} la lettera \emph{a} verrà sostituita con la \emph{q}, la \emph{b} con la \emph{w} e così via fino a scambiare la \emph{z} con la \emph{m}.
@@ -45,7 +62,7 @@
 			
 			Come prima, i test riguardanti il controllo della permutazione di cifratura in realtà non sarebbero necessari in quanto già presenti nei test del parser (che è quello che si occupa di questo controllo) ma sono stati aggiunti per specificare meglio il comportamento che deve avere la classe in caso di inserimento di una permutazione scorretta (troppo corta, troppo lunga o con caratteri non alfabetici).
 			
-		\subsection{Mocking}
+	\section{Mocking}
 	\section{Mutation testing}
 	\section{Integration testing}
 	\section{Test sull'interfaccia}
