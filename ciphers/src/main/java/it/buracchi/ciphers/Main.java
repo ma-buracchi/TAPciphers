@@ -16,14 +16,15 @@ public final class Main {
 	
 	public static void main(String[] args) {
 
-		BasicConfigurator.configure();
-
 		Parser parser = new InputManager();
 		Affine aff = new Affine(parser);
 		OneTimePad otp = new OneTimePad(parser);
 		Shift shift = new Shift(parser);
 		Substitution sub = new Substitution(parser, "qwertyuiopasdfghjklzxcvbnm");
 		Vigenere vig = new Vigenere(parser, "test");
+		
+		BasicConfigurator.resetConfiguration();
+		BasicConfigurator.configure();
 
 		LOGGER.info("Benvenuti in ciphers, progetto per esame di Tecniche Avanzate di Programmazione");
 		LOGGER.info(
@@ -88,7 +89,6 @@ public final class Main {
 		LOGGER.info("Proviamo a cifrare 'testmessage' con K = test");
 		vig.coding("testmessage");
 		LOGGER.info("Controprova");
-		vig = new Vigenere(parser, "test");
 		vig.decoding("mikmfikltkw");
 		
 	}

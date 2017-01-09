@@ -2,6 +2,7 @@ package it.buracchi.ciphers;
 
 import java.security.SecureRandom;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -20,6 +21,7 @@ public class OneTimePad {
 		initializeConvert();
 		this.parser = p;
 		this.generator = new SecureRandom();
+		BasicConfigurator.configure();
 	}
 
 	public String createKey(String msg) {
