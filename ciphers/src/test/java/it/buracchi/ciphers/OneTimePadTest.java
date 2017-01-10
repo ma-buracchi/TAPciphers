@@ -29,40 +29,32 @@ public class OneTimePadTest {
 	public void setup() {
 		parser = mock(Parser.class);
 		converter = mock(Mapper.class);
-		when(parser.process("a")).thenReturn("a");
-		when(parser.process("test")).thenReturn("test");
-		when(parser.process(string_a_BinaryRepresentation)).thenReturn(string_a_BinaryRepresentation);
-		when(parser.process(string_test_BinaryRepresentation)).thenReturn(string_test_BinaryRepresentation);
-		when(parser.process(shortKey)).thenReturn(shortKey);
-		when(parser.checkKey(shortKey, 4)).thenReturn(shortKey);
-		when(parser.process(longKey)).thenReturn(longKey);
-		when(parser.checkKey(longKey, 13)).thenReturn(longKey);
-		when(parser.process(string_a_CodedWithShortKey)).thenReturn(string_a_CodedWithShortKey);
-		/*for(int i = 0; i < 26; i++){
-			when(converter.addEntry((char)(i+97), huffman[i])).thenReturn();
-		}*/
 		otp = new OneTimePad(parser, converter, huffman);
 	}
 
 	@Test
 	public void testCreatedKeyOneCharachterLength() {
+		when(parser.process(string_a_BinaryRepresentation)).thenReturn(string_a_BinaryRepresentation);
 		assertEquals(string_a_BinaryRepresentation.length(), otp.createKey(string_a_BinaryRepresentation).length());
 	}
 
 	@Test
 	public void testCreatedLongerThanKeyOneCharachterLength() {
+		when(parser.process(string_test_BinaryRepresentation)).thenReturn(string_test_BinaryRepresentation);
 		assertEquals(string_test_BinaryRepresentation.length(),
 				otp.createKey(string_test_BinaryRepresentation).length());
 	}
 
 	@Test
 	public void testFromStringToBinary() {
+		when(parser.process("a")).thenReturn("a");
 		when(converter.getValueFromKey('a')).thenReturn(string_a_BinaryRepresentation);
 		assertEquals(string_a_BinaryRepresentation, otp.fromStringToBinary("a"));
 	}
 
 	@Test
 	public void testFromStringToBinaryLongerString() {
+		when(parser.process("test")).thenReturn("test");
 		when(converter.getValueFromKey('t')).thenReturn(string_t_BinaryRepresentation);
 		when(converter.getValueFromKey('e')).thenReturn(string_e_BinaryRepresentation);
 		when(converter.getValueFromKey('s')).thenReturn(string_s_BinaryRepresentation);
@@ -89,21 +81,25 @@ public class OneTimePadTest {
 
 	@Test
 	public void testCoding() {
+		when(parser.checkKey(shortKey, 4)).thenReturn(shortKey);
 		assertEquals(string_a_CodedWithShortKey, otp.coding(string_a_BinaryRepresentation, shortKey));
 	}
 
 	@Test
 	public void testCodingLongerString() {
+		when(parser.checkKey(longKey, 13)).thenReturn(longKey);
 		assertEquals(string_test_CodedWithLongKey, otp.coding(string_test_BinaryRepresentation, longKey));
 	}
 
 	@Test
 	public void testDecoding() {
+		when(parser.checkKey(shortKey, 4)).thenReturn(shortKey);
 		assertEquals(string_a_BinaryRepresentation, otp.coding(string_a_CodedWithShortKey, shortKey));
 	}
 
 	@Test
 	public void testDecodingLongerString() {
+		when(parser.checkKey(longKey, 13)).thenReturn(longKey);
 		assertEquals(string_test_BinaryRepresentation, otp.coding(string_test_CodedWithLongKey, longKey));
 	}
 
