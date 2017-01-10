@@ -6,21 +6,22 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
 import static it.buracchi.ciphers.Constants.*;
 
 public class OneTimePad {
 
 	private Parser parser;
 	private SecureRandom generator;
-	private BiMap<Character, String> convert;
+	private Mapper<Character, String> convert;
 	private static final Logger LOGGER = LogManager.getLogger(OneTimePad.class);
+	private static final char[] alphabet = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+			'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 
-	public OneTimePad(Parser p) {
-		initializeConvert();
+	public OneTimePad(Parser p, Mapper<Character, String> m, String[] conversion) {
 		this.parser = p;
+		this.convert = m;
 		this.generator = new SecureRandom();
+		initializeConvert(alphabet, conversion);
 		BasicConfigurator.resetConfiguration();
 		BasicConfigurator.configure();
 	}
@@ -63,7 +64,7 @@ public class OneTimePad {
 	private String stringToBin(String msg) {
 		StringBuilder res = new StringBuilder();
 		for (Character c : msg.toCharArray()) {
-			res.append(convert.get(c));
+			res.append(convert.getValueFromKey(c));
 		}
 		return res.toString();
 	}
@@ -74,41 +75,17 @@ public class OneTimePad {
 		for (char c : msg.toCharArray()) {
 			substring.append(c);
 			if (convert.containsValue(substring.toString())) {
-				res.append(convert.inverse().get(substring.toString()));
+				res.append(convert.getKeyFromValue(substring.toString()));
 				substring.setLength(0);
 			}
 		}
 		return res.toString();
 	}
 
-	private void initializeConvert() {
-		convert = HashBiMap.create();
-		convert.put('a', "0100");
-		convert.put('b', "011111");
-		convert.put('c', "11110");
-		convert.put('d', "01010");
-		convert.put('e', "000");
-		convert.put('f', "10110");
-		convert.put('g', "011100");
-		convert.put('h', "1101");
-		convert.put('i', "0010");
-		convert.put('j', "101111100");
-		convert.put('k', "1011110");
-		convert.put('l', "01011");
-		convert.put('m', "10100");
-		convert.put('n', "0011");
-		convert.put('o', "0110");
-		convert.put('p', "011110");
-		convert.put('q', "101111110");
-		convert.put('r', "1110");
-		convert.put('s', "1100");
-		convert.put('t', "100");
-		convert.put('u', "11111");
-		convert.put('v', "101110");
-		convert.put('w', "10101");
-		convert.put('x', "101111101");
-		convert.put('y', "011101");
-		convert.put('z', "101111111");
+	private void initializeConvert(char[] alphabet, String[] conversion) {
+		for (int i = 0; i < ALPHABET_LENGTH; i++) {
+			convert.addEntry(alphabet[i], conversion[i]);
+		}
 	}
 
 }
