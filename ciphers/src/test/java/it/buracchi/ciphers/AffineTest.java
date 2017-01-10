@@ -13,6 +13,7 @@ public class AffineTest {
 
 	private Mapper<Integer, Integer> mapper;
 
+	@SuppressWarnings("unchecked")
 	@Before
 	public void setUp() throws Exception {
 		parser = mock(Parser.class);
