@@ -58,7 +58,6 @@ public class ShiftTest {
 	
 	@Test
 	public void testShiftDecodingOnePosition() {
-		when(parser.process("uftu")).thenReturn("uftu");
 		assertEquals("test", shift.decoding("uftu", 1));
 	}
 	
