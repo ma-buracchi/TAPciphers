@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SubstitutionInputManagerIT {
+public class SubInputManagerMapperIT {
 
 	private Substitution sub;
 	private Parser parser;
