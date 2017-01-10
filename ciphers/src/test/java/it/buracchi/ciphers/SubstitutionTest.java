@@ -10,25 +10,32 @@ public class SubstitutionTest {
 
 	private Substitution sub;
 	private Parser parser;
+	private Mapper<Character, Character> convertTable;
 	private String newAlphabet;
 
+	@SuppressWarnings("unchecked")
 	@Before
 	public void setup() {
 		parser = mock(Parser.class);
+		convertTable = mock(Mapper.class);
 		newAlphabet = "qwertyuiopasdfghjklzxcvbnm";
 		when(parser.checkAlphabet(newAlphabet)).thenReturn(newAlphabet);
-		sub = new Substitution(parser, newAlphabet);
+		sub = new Substitution(parser, convertTable, newAlphabet);
 	}
 
 	@Test
 	public void testCoding() {
 		when(parser.process("a")).thenReturn("a");
+		when(convertTable.getValueFromKey('a')).thenReturn('q');
 		assertEquals("q", sub.coding("a"));
 	}
-	
+
 	@Test
 	public void testCodingLongerString() {
 		when(parser.process("test")).thenReturn("test");
+		when(convertTable.getValueFromKey('t')).thenReturn('z');
+		when(convertTable.getValueFromKey('e')).thenReturn('t');
+		when(convertTable.getValueFromKey('s')).thenReturn('l');
 		assertEquals("ztlz", sub.coding("test"));
 	}
 
@@ -41,12 +48,16 @@ public class SubstitutionTest {
 	@Test
 	public void testDecoding() {
 		when(parser.process("q")).thenReturn("q");
+		when(convertTable.getKeyFromValue('q')).thenReturn('a');
 		assertEquals("a", sub.decoding("q"));
 	}
-	
+
 	@Test
 	public void testDecodingLongerString() {
 		when(parser.process("ztlz")).thenReturn("ztlz");
+		when(convertTable.getKeyFromValue('z')).thenReturn('t');
+		when(convertTable.getKeyFromValue('t')).thenReturn('e');
+		when(convertTable.getKeyFromValue('l')).thenReturn('s');
 		assertEquals("test", sub.decoding("ztlz"));
 	}
 
@@ -60,21 +71,21 @@ public class SubstitutionTest {
 	public void testNewAlphabetShorterThenTwentySixLetters() {
 		newAlphabet = "qwertyuiopasdfghj";
 		when(parser.checkAlphabet(newAlphabet)).thenThrow(new IllegalArgumentException());
-		sub = new Substitution(parser, newAlphabet);
+		sub = new Substitution(parser, convertTable, newAlphabet);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testNewAlphabetLongerThenTwentySixLetters() {
 		newAlphabet = "qwertyuiopasdfghjklzxcvbnmqwerty";
 		when(parser.checkAlphabet(newAlphabet)).thenThrow(new IllegalArgumentException());
-		sub = new Substitution(parser, newAlphabet);
+		sub = new Substitution(parser, convertTable, newAlphabet);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testNewAlphabetWithIllegalCharacter() {
 		newAlphabet = "qwertyuiopa?dfghjklzxcvbnm";
 		when(parser.checkAlphabet(newAlphabet)).thenThrow(new IllegalArgumentException());
-		sub = new Substitution(parser, newAlphabet);
+		sub = new Substitution(parser, convertTable, newAlphabet);
 	}
 
 }
