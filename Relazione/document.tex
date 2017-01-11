@@ -1,0 +1,123 @@
+%--------------------------------------------------------------
+% - template for the main file of Informatica@Unifi Thesis 
+% - based on Classic Thesis Style Copyright (C) 2008 
+%   Andr\'e Miede http://www.miede.de   
+%--------------------------------------------------------------
+% Avoid warning
+\RequirePackage{silence}
+\WarningFilter{scrbook}{Usage of package `titlesec'}
+\WarningFilter{scrbook}{Activating an ugly workaround}
+\WarningFilter{scrbook}{\float@addtolist}
+\WarningFilter{titlesec}{Non standard sectioning command detected}
+%--------------------------------------------------------------
+\documentclass[final,oneside,titlepage,fleqn,
+	headinclude,10pt,a4paper,BCOR5mm,footinclude]{scrbook}
+%--------------------------------------------------------------
+\newcommand{\myItalianTitle}{CIPHERS: IMPLEMENTAZIONE DI ALCUNI CIFRARI STORICI\xspace} 
+\newcommand{\myDegree}{Corso di Laurea Magistrale in Informatica\xspace}
+\newcommand{\myName}{Marco Buracchi\xspace}
+\newcommand{\myProf}{Prof. Lorenzo Bettini\xspace}
+\newcommand{\myFaculty}{
+	Scuola di Scienze Matematiche, Fisiche e Naturali\xspace}
+\newcommand{\myUni}{\protect{
+	Universit\`A degli Studi di Firenze}\xspace}
+\newcommand{\myLocation}{Firenze\xspace}
+\newcommand{\myTime}{Anno Accademico 2016-2017\xspace} 
+%--------------------------------------------------------------
+\usepackage{dia-classicthesis-ldpkg}
+%--------------------------------------------------------------
+% Options for classicthesis.sty:
+% tocaligned eulerchapternumbers drafting linedheaders 
+% listsseparated subfig nochapters beramono eulermath parts 
+% minionpro pdfspacing
+\usepackage[eulerchapternumbers,linedheaders,subfig,beramono,eulermath,parts]{classicthesis}
+%--------------------------------------------------------------
+%--------------------------------------------------------------
+\usepackage[italian]{babel}	%sillabazione italiana
+\usepackage[utf8]{inputenc}	%accenti direttamente da tastiera
+\usepackage[T1]{fontenc}	%stampare accenti
+\usepackage{ellipsis}		%spazio dopo punteggiatura			
+\usepackage{subfig}			%opzioni per immagini
+\usepackage{caption}		%opzioni per didascalie immagini
+\usepackage{appendix}		%creare appendice
+\usepackage{listings}		%inserire codice
+\usepackage{color}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+%--------------------------------------------------------------
+\newlength{\abcd} % for ab..z string length calculation
+% how all the floats will be aligned
+\newcommand{\myfloatalign}{\centering} 
+\setlength{\extrarowheight}{3pt} % increase table row height
+\captionsetup{format=hang,font=small}
+%--------------------------------------------------------------
+% Layout setting
+%--------------------------------------------------------------
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	ignoremp,
+	bindingoffset = 1cm, 
+	textwidth     = 13.5cm,
+	textheight    = 21.5cm,
+	lmargin       = 3.5cm, % left margin
+	tmargin       = 4cm    % top margin 
+}
+
+\lstset{
+	basicstyle=\ttfamily,
+	columns=fullflexible,
+	showstringspaces=false,
+	commentstyle=\color{gray}\upshape
+}
+
+\lstdefinelanguage{XML}
+{
+	morestring=[b]",
+	morestring=[s]{>}{<},
+	morecomment=[s]{<?}{?>},
+	stringstyle=\color{black},
+	identifierstyle=\color{darkblue},
+	keywordstyle=\color{cyan},
+	morekeywords={xmlns,version,type}% list your attributes here
+}
+
+\newcommand{\sectionline}{
+	\begin{center}
+		\resizebox{0.5\linewidth}{1ex}{
+			\begin{tikzpicture}
+				\node  (C) at (0,0) {};
+				\node (D) at (9,0) {};
+				\path (C) to [ornament=83] (D);
+			\end{tikzpicture}
+		}
+	\end{center}
+}
+%--------------------------------------------------------------
+\begin{document}
+\frenchspacing
+\raggedbottom
+%\pagenumbering{roman}
+\pagestyle{plain}
+%--------------------------------------------------------------
+% Frontmatter
+%--------------------------------------------------------------
+\include{titlePage}
+\tableofcontents
+\include{chapters/cenni-preliminari}
+\include{chapters/strumenti}
+\include{chapters/testing}
+\include{chapters/conclusioni}
+\begin{appendices}
+	\include{chapters/appendiceA}
+\end{appendices}
+\pagestyle{scrheadings}
+%--------------------------------------------------------------
+% Mainmatter
+%--------------------------------------------------------------
+
+		
+%--------------------------------------------------------------
+\end{document}
+%--------------------------------------------------------------
