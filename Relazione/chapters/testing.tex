@@ -106,7 +106,7 @@
 			\label{fig:pit}
 		\end{figure}
 		
-		Dei 121 mutanti creati solamente tre sopravvivono. Questo però non viene ritenuto un problema perché i mutanti sopravvissuti non compromettono la funzionalità del programma. Il comportamento mutato è infatti il controllo del fatto che la lunghezza della chiave nel cifrario di Vigenère sia almeno quanto la lunghezza del messaggio che si vuole cifrare. Nel codice è stato utilizzato un < ma ovviamente, visto che la lunghezza della chiave non deve necessariamente essere uguale a quella del messaggio ma può essere superiore, cambiare questo controllo con un <= non cambia la funzionalità del metodo e non deve neanche generare un errore.
+		Dei 132 mutanti creati solamente tre sopravvivono. Questo però non viene ritenuto un problema perché i mutanti sopravvissuti non compromettono la funzionalità del programma. Il comportamento mutato è infatti il controllo del fatto che la lunghezza della chiave nel cifrario di Vigenère sia almeno quanto la lunghezza del messaggio che si vuole cifrare. Nel codice è stato utilizzato un < ma ovviamente, visto che la lunghezza della chiave non deve necessariamente essere uguale a quella del messaggio ma può essere superiore, cambiare questo controllo con un <= non cambia la funzionalità del metodo e non deve neanche generare un errore.
 		
 		L'unico effetto riscontrato sarà un prolungamento inutile della chiave che però non porta alcun problema.
 		
