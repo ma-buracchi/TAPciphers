@@ -71,6 +71,23 @@
 			
 			Il metodo \emph{checkKey} riceve una stringa e un intero \emph{l} e si occupa di verificare che la stringa ricevuta sia una stringa binaria di lunghezza \emph{l}. Questo metodo viene testato prima passando una stringa binaria e la lunghezza corrispondente e poi aspettandosi un'eccezione quando gli vengono passate prima una stringa contenente un carattere diverso da 0 o 1 e successivamente un intero maggiore della lunghezza della stringa.
 			
+		\subsection{BiMapper}
+				Questa è la classe concreta che implementa l'interfaccia \emph{Mapper}. Questa classe funge da wrapper per la libreria \emph{Guava} di \emph{Google} che mette a disposizione la struttura dati \emph{HashBiMap}, una \emph{Hashmap bidirezionale} che permette di ottenere il valore associato ad una certa chiave ma anche il viceversa.
+				
+				I metodi implementati sono:
+				\begin{itemize}
+					\item \emph{addEntry} che aggiunge una coppia chiave-valore nella mappa
+					\item \emph{size} che restituisce il numero di entry presenti nella mappa
+					\item \emph{getValueFromKey} che restituisce il valore associato alla chiave data in input
+					\item \emph{getKeyFromValue} che restituisce la chiave associata al valore dato in input
+					\item \emph{containsKey} che restituisce \emph{true} se la chiave data in input è presente all'interno della mappa
+					\item \emph{containsValue} che restituisce \emph{true} se il valore dato in input è presente all'interno della mappa
+				\end{itemize}
+				
+				Le implementazioni di questi metodi sono semplicemente l'utilizzo del corrispettivo metodo della libreria \emph{Guava}. 
+				
+				Essendo una classe parametrica che utilizza i \emph{generics}, senza perdere in generalità, i test sono stati svolti con stringhe. I test cercano di coprire tutti i comportamenti richiesti dalla classe con mappe vuote, contenenti una sola entry o più di una entry.
+			
 	\section{Mocking}
 		Per eliminare la dipendenza da altre classi concrete che potrebbero disturbare lo unit-testing, nelle cinque classi che implementano i cifrari, viene utilizzato un \emph{mock} dell'interfaccia parser.	Ognuna di queste cinque classi utilizza infatti un oggetto di questo tipo per effettuare vari controlli sulle stringhe fornite in input.
 		
