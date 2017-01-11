@@ -17,6 +17,6 @@
 		
 		L'interfaccia \emph{Mapper} definisce i metodi che deve implementare la classe che si occuperà di gestire le associazioni tra l'alfabeto e la sua cifratura. Viene implementata dalla classe \emph{BiMapper}.
 		
-		La classe \emph{Constants} contiene delle costanti statiche condivise dalle varie parti del programma e infine la classe \emph{Main} contiene un piccolo main che si limita ad illustrare le varie funzionalità del programma.
+		La classe \emph{Constants} contiene delle costanti statiche condivise dalle varie parti del programma e infine la classe \emph{Main} contiene un piccolo main che si limita ad illustrare le varie funzionalità del programma. Per il main è stato pensato di dirigere i LOG direttamente allo standard output (console) in modo tale da visualizzarli direttamente a schermo quando viene lanciato il jar.
 		
 		Per quanto riguarda i test, sono presenti sette classi di unit-testing (una per ogni cifrario, una per la classe \emph{InputManager} e una per la classe \emph{BiMapper}) e cinque classi di integration-testing per controllare l'effettivo funzionamento dell'interazione tra ognuna delle cinque classi che implementano i cifrari, il parser \emph{InputManager} e il mapper \emph{BiMapper}.

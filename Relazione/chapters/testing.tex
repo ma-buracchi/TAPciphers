@@ -87,14 +87,28 @@
 				Le implementazioni di questi metodi sono semplicemente l'utilizzo del corrispettivo metodo della libreria \emph{Guava}. 
 				
 				Essendo una classe parametrica che utilizza i \emph{generics}, senza perdere in generalità, i test sono stati svolti con stringhe. I test cercano di coprire tutti i comportamenti richiesti dalla classe con mappe vuote, contenenti una sola entry o più di una entry.
+				
+			\subsection{Constants e Main}
+				Le classi \emph{Constants} e \emph{Main} non sono state testate. Sono state escluse dalla code coverage sia di \emph{JaCoCo} che di \emph{SonarQube}.
 			
 	\section{Mocking}
 		Per eliminare la dipendenza da altre classi concrete che potrebbero disturbare lo unit-testing, nelle cinque classi che implementano i cifrari, viene utilizzato un \emph{mock} dell'interfaccia parser e un \emph{mock} dell'interfaccia mapper. Ognuna di queste cinque classi utilizza infatti un oggetto di tipo parser per effettuare vari controlli sulle stringhe fornite in input e alcune utilizzano anche un oggetto di tipo mapper per cifrare/decifrare.
 		
 		In ogni test-case viene effettuato lo \emph{stub} dei metodi necessari a quel particolare test. Inizialmente gli stub comuni a più test-case erano stati messi nel metodo \emph{@Before} ma, non ricevendo indicazioni in merito da SonarQube, è stato ritenuto opportuno inserire lo \emph{stub} dei metodi necessari in ogni test-case per migliorare la chiarezza del test.
 		
+		Per verificare l'effettiva indipendenza di ogni classe è stata lanciata una sessione di coverage utilizzando solamente gli unit-testing di quella classe ed è stato verificato che venisse coperto il 100\% della classe sotto esame e lo 0\% di ogni altra classe. Un esempio è mostrato in figura \ref{fig:unit}
+		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.3]{img/single-test}
+			\caption{Risultati della coverage della classe OneTimePad utilizzando Mockito}
+			\label{fig:unit}
+		\end{figure}
+		
 	\section{Integration testing}
 		Come test di integrazione sono stati effettuati gli stessi test utilizzati per lo unit-testing delle cinque classi dei cifrari. Al posto del mocking delle interfacce però, sono state utilizzate le rispettive implementazioni concrete.
+		
+		\emph{SonarQube} è stato configurato per scansionare anche le classi di integration testing ma separatamente da quelle di unit testing.
 		
 	\section{Mutation testing}
 		Per il mutation testing è stato utilizzato PIT. Sono stati attivati gli strong mutator e il risultato del testing è visibile in figura \ref{fig:pit}
