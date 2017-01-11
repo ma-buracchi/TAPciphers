@@ -18,8 +18,6 @@ public class AffineTest {
 	public void setUp() throws Exception {
 		parser = mock(Parser.class);
 		mapper = mock(Mapper.class);
-		when(mapper.getValueFromKey(3)).thenReturn(9);
-		when(mapper.containsKey(3)).thenReturn(true);
 		affine = new Affine(parser, mapper);
 	}
 
@@ -33,36 +31,42 @@ public class AffineTest {
 	@Test
 	public void testCoding() {
 		when(parser.process("a")).thenReturn("a");
+		when(mapper.containsKey(3)).thenReturn(true);
 		assertEquals("f", affine.coding("a", 3, 5));
 	}
 
 	@Test
 	public void testCodingLongerString() {
 		when(parser.process("test")).thenReturn("test");
+		when(mapper.containsKey(3)).thenReturn(true);
 		assertEquals("krhk", affine.coding("test", 3, 5));
 	}
 
 	@Test
 	public void testCodingEmptyString() {
 		when(parser.process("")).thenReturn("");
+		when(mapper.containsKey(3)).thenReturn(true);
 		assertEquals("", affine.coding("", 3, 5));
 	}
 
 	@Test
 	public void testDecoding() {
 		when(parser.process("f")).thenReturn("f");
+		when(mapper.getValueFromKey(3)).thenReturn(9);
 		assertEquals("a", affine.decoding("f", 3, 5));
 	}
 
 	@Test
 	public void testDecodingLongerString() {
 		when(parser.process("krhk")).thenReturn("krhk");
+		when(mapper.getValueFromKey(3)).thenReturn(9);
 		assertEquals("test", affine.decoding("krhk", 3, 5));
 	}
 
 	@Test
 	public void testDecodingEmptyString() {
 		when(parser.process("")).thenReturn("");
+		when(mapper.getValueFromKey(3)).thenReturn(9);
 		assertEquals("", affine.decoding("", 3, 5));
 	}
 
