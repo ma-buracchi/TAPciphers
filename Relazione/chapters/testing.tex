@@ -1,12 +1,12 @@
 \chapter{Testing}
 
 	\section{Unit testing}
-		Per tutti i test viene supposto che le stringhe da cifrare siano state processate dal parser e quindi che contengano solamente caratteri effettivamente cifrabili. Per eliminare tale dipendenza da classi concrete, nei vari unit-test un'istanza del parser viene simulata tramite \emph{mocking} e \emph{stubbing} dei metodi. Tale metodo verrà approfondito più avanti.
+		Per tutti i test viene supposto che le stringhe da cifrare siano state processate dal parser e quindi che contengano solamente caratteri effettivamente cifrabili. Per eliminare la dipendenza da classi concrete, nei vari unit-test, un'istanza del parser e, dove necessario, una del mapper viene simulata tramite \emph{mocking} e \emph{stubbing} dei metodi. Tale metodo verrà approfondito più avanti.
 		
 		Andiamo a vedere nel dettaglio i test con i quali sono state implementate le varie classi.
 		
 		\subsection{Shift cipher}
-			Lo \emph{shift cipher} è il cifrario più semplice. L'unica cosa che fa è spostare la lettere da cifrare di un certo numero di posizioni avanti nell'alfabeto. Tale numero di posizioni è la chiave del cifrario. Per decifrare il messaggio basterà semplicemente tornare indietro del numero di posizioni indicato dalla chiave. Se per esempio il messaggio è \emph{ciao} e la chiave è 3, il messaggio cifrato sarà \emph{fldr}.
+			Lo \emph{shift cipher} è il cifrario più semplice. L'unica cosa che fa è spostare la lettere da cifrare di un certo numero di posizioni avanti (o indietro) nell'alfabeto. Tale numero di posizioni è la chiave del cifrario. Per decifrare il messaggio basterà semplicemente tornare indietro (o avanti) del numero di posizioni indicato dalla chiave. Se per esempio il messaggio è \emph{ciao} e la chiave è 3, il messaggio cifrato sarà \emph{fldr}.
 			
 			Le uniche due funzionalità richieste a questo cifrario sono quelle di cifratura e decifratura. Tali funzionalità sono state testate nel caso di uno spostamento di zero posizioni (non ottenendo una cifratura), di una posizione, di ventisei posizioni, di ventisette posizioni e di un numero negativo di posizioni(-1). Come caso limite è stata testata anche la cifratura della stringa vuota (il numero di posizioni è ininfluente dato che la cifratura terminerà immediatamente).
 			
@@ -17,7 +17,7 @@
 			
 			I comportamenti da testare sono la cifratura, la decifratura e la giusta scelta del  parametro \emph{a} che deve essere coprimo con 26.
 			
-			Questo ultimo comportamento viene testato dando in input 2 come coefficiente \emph{a} e aspettandosi una IllegalArgumentException.
+			Questo ultimo comportamento viene testato dando in input 2 (non coprimo con 26) come coefficiente \emph{a} e aspettandosi una IllegalArgumentException.
 			
 			La cifratura e la decifratura vengono testate con stringhe di lunghezza variabile per cercare di coprire il maggior numero di combinazioni possibili.
 			

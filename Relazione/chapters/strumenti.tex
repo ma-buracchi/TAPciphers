@@ -2,12 +2,10 @@
 
 	\section{Maven}
 		Maven è stato utilizzato per gestire le varie dipendenze del progetto e la build automatica.
-		Le dipendenze necessarie sono: 
+		Le dipendenze necessarie al programma e quindi inserite nel fatJar sono: 
 		\begin{itemize}
-			\item \emph{JUnit}: framework per lo unit-testing
 			\item \emph{Guava}: libreria di GOOGLE che fornisce un hashmap bidirezionale
-			\item \emph{Mockito}: framework utlizzato sempre per lo unit-testing
-			\item \emph{Log4J}: framework per il logging 
+			\item \emph{Log4J}: framework per il logging (non realmente necessario ma utilizzato dal Main per stampare messaggi a schermo)
 		\end{itemize}
 		
 	\section{Travis}
@@ -40,7 +38,13 @@
 			\label{fig:sonarules}
 		\end{figure}
 		
-		Sono state escluse le regole deprecate, quelle riguardanti JavaDoc che non viene utilizzato in quanto questo progetto è pensato per un utilizzo personale e non per essere divulgato, quelle che contestano l'assenza delle informazioni di copyright e di licenza per lo stesso motivo e alcune regole ambigue di formattazione. Una di queste ad esempio è quella di mettere la parentesi graffa aperta di inizio blocco in una nuova linea che contrasta con quella che suggerisce di metterla sulla stessa riga.
+		Sono state escluse 
+		\begin{itemize}
+			\item le regole deprecate
+			\item le regole riguardanti JavaDoc che non viene utilizzato in quanto questo progetto è pensato per un utilizzo personale e non per essere divulgato
+			\item le regole che contestano l'assenza delle informazioni di copyright e di licenza (come sopra)
+			\item alcune regole ambigue di formattazione come ad esempio quella che impone di mettere la parentesi graffa aperta di inizio blocco in una nuova linea che contrasta con quella che suggerisce di metterla sulla stessa riga (e con la formattazione di \emph{Eclipse})
+		\end{itemize}
 		
 		Il risultato della scansione utilizzando questi parametri è illustrato in figura \ref{fig:sonaresult}
 		
