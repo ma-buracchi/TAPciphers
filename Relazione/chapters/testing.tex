@@ -15,9 +15,7 @@
 		\subsection{Affine cipher}
 			L'Affine cipher è una generalizzazione dello shift cipher. Questo cifrario ha come chiave due parametri \emph{a} e \emph{b} opportunamente scelti secondo principi di algebra modulare. La i-esima lettera P[i] del messaggio in chiaro verrà cifrata in (P[i] * \emph{a} + \emph{b}) modulo 26. Se viene scelto il parametro \emph{a} = 1 otteniamo in tutto e per tutto uno shift cipher.
 			
-			I comportamenti da testare sono la cifratura, la decifratura e la giusta scelta del  parametro \emph{a} che deve essere coprimo con 26.
-			
-			Questo ultimo comportamento viene testato dando in input 2 (non coprimo con 26) come coefficiente \emph{a} e aspettandosi una IllegalArgumentException.
+			I comportamenti da testare sono la cifratura, la decifratura e la giusta scelta del  parametro \emph{a} che deve essere coprimo con 26. Questo ultimo comportamento viene testato dando in input 2 (non coprimo con 26) come coefficiente \emph{a} e aspettandosi una IllegalArgumentException.
 			
 			La cifratura e la decifratura vengono testate con stringhe di lunghezza variabile per cercare di coprire il maggior numero di combinazioni possibili.
 			
@@ -45,7 +43,7 @@
 			
 			Il primo comportamento testato è quello di creazione della chiave (che avviene con un generatore casuale). Questo comportamento viene testato confrontando la lunghezza della stringa data in input e la lunghezza della chiave restituita.
 			
-			Successivamente viene testata la capacità di convertire un messaggio nella relativa stringa binaria. Per questa conversione viene utilizzata la codifica di Huffmann dell'alfabeto inglese.
+			Successivamente viene testata la capacità di convertire un messaggio nella relativa stringa binaria. Per questa conversione viene utilizzata la codifica di Huffmann dell'alfabeto inglese ma potrebbe essere utilizzata una qualunque codifica binaria purché il codice risultante sia istantaneo.
 			
 			Viene testata anche l'operazione inversa, cioè quella di riconvertire una stringa binaria ottenuta dalla codifica precedente in una stringa di testo. Questo permetterà di ottenere un messaggio decifrato leggibile.
 			
