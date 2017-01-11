@@ -1,0 +1,22 @@
+\chapter{Cenni preliminari}
+
+	\section{Introduzione}
+		In questo progetto sono stati implementati cinque storici cifrari a chiave simmetrica. I cifrari implementati sono:
+		\begin{itemize}
+			\item Shift cipher
+			\item Vigenere cipher
+			\item Substitution cipher
+			\item Affine cipher
+			\item OneTimePad cipher
+		\end{itemize}
+		
+	\section{Struttura progetto}
+		Le cinque classi principali che implementano i cinque cifrari sono \emph{Shift, Vigenere, Substitution, Affine} e \emph{OneTimePad}.
+		
+		L'interfaccia \emph{Parser} definisce i metodi che deve implementare la classe che si occuperà di gestire le stringhe rappresentanti i messaggi, le chiavi e quant'altro all'interno del progetto.
+		
+		La classe \emph{InputManager} fornisce un'implementazione di tale interfaccia mentre la classe \emph{Constants} contiene delle variabili condivise.
+		
+		Infine la classe \emph{Main} contiene un piccolo main utile a spiegare le varie funzionalità del programma.
+		
+		Per quanto riguarda i test, sono presenti sei classi di unit-testing (una per ogni cifrario e una per l'\emph{InputManager}) e cinque classi di integration-testing per controllare l'effettivo funzionamento dell'interazione tra ognuna delle cinque classi che implementano i cifrari e il parser \emph{InputManager}.
